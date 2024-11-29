@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
-import { MdLock, MdPlayArrow, MdChevronLeft, MdChevronRight } from 'react-icons/md';
+import { MdLock, MdPlayArrow, MdChevronLeft, MdChevronRight, MdHandshake, MdMonitorHeart, MdOutlineHandshake } from 'react-icons/md';
 import './LevelCarousel.css';
+import { useNavigate } from 'react-router-dom';
 
 interface Level {
     id: number;
@@ -26,9 +27,11 @@ const LevelCarousel: React.FC<LevelCarouselProps> = ({
     const [activeIndex, setActiveIndex] = useState(currentLevel - 1);
     const [isDragging, setIsDragging] = useState(false);
 
+    const reactNavigate = useNavigate();
+
     const navigate = (newDirection: number) => {
         const newIndex = activeIndex + newDirection;
-        if (newIndex >= 0 && newIndex < levels.length) {
+        if (newIndex >= 0 && newIndex < levels.length + 1) {
             setActiveIndex(newIndex);
         }
     };
@@ -137,13 +140,33 @@ const LevelCarousel: React.FC<LevelCarouselProps> = ({
                             </motion.div>
                         );
                     })}
+
+                    <motion.div
+                        key="author-note"
+                        onClick={() => reactNavigate('/psa')}
+                        className={`carousel-card ${activeIndex === levels.length ? 'active' : ''}`}
+                        animate={getCardVariants(levels.length)}
+                        transition={{
+                            type: 'spring',
+                            stiffness: 300,
+                            damping: 30,
+                        }}
+                        style={{
+                            position: 'absolute',
+                            left: '50%',
+                        }}
+                    >
+                        <h2>Level X: PSA</h2>
+                        <MdOutlineHandshake size={30} />
+                        <p>Thank you for playing!</p>
+                    </motion.div>
                 </div>
             </motion.div>
 
             <button
                 className="nav-button right"
                 onClick={() => navigate(1)}
-                disabled={activeIndex === levels.length - 1}
+                disabled={activeIndex === levels.length}
             >
                 <MdChevronRight size={30} />
             </button>

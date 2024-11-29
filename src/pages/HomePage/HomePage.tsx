@@ -107,14 +107,15 @@ const HomePage: React.FC = () => {
                     <motion.h1 className="home-title" variants={titleVariants} initial="hidden" animate="visible">
                         Just a couple questions...
                     </motion.h1>
-                    {/* <motion.div className="home-title-buttons">
-            <button className="help-button" onClick={() => console.log('Help clicked')}>
-              Help <MdHelp size={24} />
-            </button>
-            <button className="about-button" onClick={() => console.log('About clicked')}>
-              About <MdInfo size={24} />
-            </button>
-          </motion.div> */}
+                    <motion.div 
+                    className="home-title-buttons">
+                        <motion.button className="home-nav-button" onClick={() => navigate('/psa')} whileHover={{ boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.1)', transition: { duration: 0.3 } }}>
+                            Note <MdInfo size={24} />
+                        </motion.button>
+                        <motion.button className="home-nav-button" onClick={() => setShowWelcomePopup(true)} whileHover={{ boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.1)', transition: { duration: 0.3 } }}>
+                            Help <MdHelp size={24} />
+                        </motion.button>
+                    </motion.div>
                     <motion.hr className="home-divider" variants={dividerVariants} initial="hidden" animate="visible" />
                 </motion.div>
                 <motion.div variants={itemVariants}>
