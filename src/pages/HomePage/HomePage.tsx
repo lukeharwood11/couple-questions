@@ -31,7 +31,6 @@ const HomePage: React.FC = () => {
         let statusColor = '#666'; // Default gray for locked levels
         if (isComplete) {
             if (tipPercentage === 0) statusColor = '#4CAF50';
-            else if (tipPercentage <= 10) statusColor = '#8BC34A';
             else if (tipPercentage <= 15) statusColor = '#FFC107';
             else if (tipPercentage <= 20) statusColor = '#FF9800';
             else statusColor = '#F44336';
