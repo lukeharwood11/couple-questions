@@ -1,0 +1,37 @@
+.level-three-page {
+  min-height: 100vh;
+  position: relative;
+}
+
+.hidden-footer {
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.spacer-div {
+  height: 200vh;
+  width: 100%;
+  opacity: 0;
+}
+
+.footer-content {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-content button {
+  width: 200px;
+}
+
+/* Hide scrollbar but keep functionality */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: none;
+} 

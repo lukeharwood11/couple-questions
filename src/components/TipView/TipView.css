@@ -1,0 +1,24 @@
+.tip-view {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+.amount-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-size: 1.1rem;
+}
+
+.amount-row.total {
+  border-top: 2px solid #e0e0e0;
+  margin-top: 10px;
+  padding-top: 15px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}

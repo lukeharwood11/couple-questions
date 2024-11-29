@@ -1,0 +1,17 @@
+.pattern-active {
+  box-shadow: 0 0 15px #4CAF50;
+  border: 2px solid #4CAF50 !important;
+  animation: glow 1.5s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 15px #4CAF50;
+  }
+  50% {
+    box-shadow: 0 0 25px #4CAF50;
+  }
+  100% {
+    box-shadow: 0 0 15px #4CAF50;
+  }
+}

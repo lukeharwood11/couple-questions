@@ -1,0 +1,52 @@
+{
+  "levels": [
+    {
+      "id": 1,
+      "title": "The Coffee Shop",
+      "subtitle": "It's just gonna ask you a couple questions...",
+      "baseAmount": 25.50
+    },
+    {
+      "id": 2,
+      "title": "Movie Theater",
+      "subtitle": "It's just going to ask you a couple questions...",
+      "baseAmount": 42.75
+    },
+    {
+      "id": 3,
+      "title": "The Door Greeter",
+      "subtitle": "It's just going to ask you a couple questions...",
+      "baseAmount": 2.02
+    },
+    {
+      "id": 4,
+      "title": "Fast Food",
+      "subtitle": "It's just going to ask you a couple questions...",
+      "baseAmount": 20.25
+    },
+    {
+      "id": 5,
+      "title": "Merch Shop",
+      "subtitle": "Great Pick! Anyways- anything is appreciated...",
+      "baseAmount": 100.00
+    },
+    {
+      "id": 6,
+      "title": "State Fair Bathroom Guy",
+      "subtitle": "Psst, I know you're busy... but it's just gonna ask you a couple questions...",
+      "baseAmount": 20.01
+    },
+    {
+      "id": 7,
+      "title": "Concession Stand",
+      "subtitle": "*Intense Stare* ... I'm volunteering my time here, so anything is appreciated...",
+      "baseAmount": 5.30
+    },
+    {
+      "id": 8,
+      "title": "The Basketball Game",
+      "subtitle": "A soda? That'll be $30.00, and it's just going to ask you a couple questions...",
+      "baseAmount": 30.00
+    }
+  ]
+}

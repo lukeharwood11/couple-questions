@@ -1,0 +1,137 @@
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+  touch-action: pan-y pinch-zoom;
+}
+
+.carousel-viewport {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-x;
+}
+
+.carousel-viewport:active {
+  cursor: grabbing;
+}
+
+.carousel-center-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-card {
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  transform-origin: center center;
+  transition: filter 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+  pointer-events: auto;
+  filter: blur(2px);
+}
+
+.carousel-card.active {
+  cursor: pointer;
+  z-index: 2;
+  filter: blur(0);
+}
+
+.carousel-card:not(.active) {
+  pointer-events: none;
+}
+
+.carousel-card.locked {
+  cursor: not-allowed;
+}
+
+.carousel-card h2 {
+  margin: 0 0 15px 0;
+}
+
+.nav-button {
+  position: absolute;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: black;
+  transition: all 0.3s ease;
+}
+
+.nav-button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.nav-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nav-button.left {
+  left: 20px;
+}
+
+.nav-button.right {
+  right: 20px;
+}
+
+.lock-icon, .play-icon {
+  font-size: 2em;
+  margin: 10px 0;
+}
+
+.tip-result {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.carousel-card p {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.carousel-card.next-level {
+  box-shadow: 0 0 15px #2196F3, 0 0 30px rgba(33, 150, 243, 0.5);
+  animation: pulse 2s infinite;
+  background-color: rgba(255, 255, 255, 0.273);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 15px #2196F3, 0 0 30px rgba(33, 150, 243, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 25px #2196F3, 0 0 40px rgba(33, 150, 243, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 15px #2196F3, 0 0 30px rgba(33, 150, 243, 0.5);
+  }
+} 

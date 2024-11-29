@@ -1,0 +1,31 @@
+{
+    "greatTip": [
+        "WOW! A huge tip! You're really bad at this game, aren't you?",
+        "Oh honey... the goal was to NOT tip. But thanks for the money, I guess!",
+        "Someone clearly doesn't understand the concept of winning. But hey, thanks for being a loser!",
+        "Congratulations on being the most generous failure we've had today!",
+        "Look who's got more money than sense! Thanks for being terrible at this game!"
+    ],
+    "mediumTip": [
+        "A mediocre tip for mediocre gameplay. At least you're consistent.",
+        "Not the worst tip ever, but definitely not winning material.",
+        "Halfway to failure - just like your tip amount!",
+        "Could've kept that money in your pocket, but nooo...",
+        "Well, at least you didn't go full generous. Still failed though!"
+    ],
+    "badTip": [
+        "Wow, really? That's all my service was worth to you? ...I mean, congratulations on being stingy!",
+        "I have bills to pay, you know... but I guess you're getting better at this stupid game.",
+        "My kids won't eat tonight, but hey, you're really mastering this whole 'being cheap' thing!",
+        "Thanks for the pocket change... You must be SO proud of yourself.",
+        "I'll remember this tip next time you want something... but great job being 'strategic'!"
+    ],
+    "noTip": [
+        "Unbelievable. Zero tip? I hope you're happy with yourself... because technically you've won.",
+        "My service wasn't worth a SINGLE penny? ...I hate to say it, but that's perfect gameplay.",
+        "Thanks for nothing - literally! You're really good at this horrible game.",
+        "I'll be eating ramen tonight, but congratulations on your flawless victory...",
+        "You must be so proud of being absolutely terrible at basic human decency. Winner winner, no dinner (for me)!",
+        "You're an awful person. Good job I guess."
+    ]
+}

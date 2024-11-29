@@ -1,0 +1,29 @@
+.layout {
+  min-height: 100vh;
+}
+
+.back-button-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+}
+
+.back-button {
+  text-decoration: none;
+  color: #666;
+  font-size: 1rem;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.back-button:hover {
+  transform: translateX(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.main-content {
+} 

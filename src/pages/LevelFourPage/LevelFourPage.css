@@ -1,0 +1,57 @@
+.level-four-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hidden-footer {
+  position: relative;
+  margin-top: 2rem;
+}
+
+.spacer-div {
+  height: 200vh;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  perspective: 1000px;
+  height: 100px;
+  position: relative;
+}
+
+.footer-content > div {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.front, .back {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.hidden-text {
+  cursor: pointer;
+  color: #666;
+  font-style: italic;
+}
+
+.hidden-text:hover {
+  text-decoration: underline;
+}
+.back {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.back p {
+  margin-top: 1rem;
+  color: #666;
+  font-style: italic;
+} 

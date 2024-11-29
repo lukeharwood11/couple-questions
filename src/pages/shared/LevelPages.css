@@ -1,0 +1,42 @@
+.level-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.level-title {
+  text-align: center;
+  color: #333;
+  margin-top: 2rem;
+  margin-bottom: 30px;
+}
+
+.level-subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+}
+
+.tip-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.tip-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .5rem;
+}
+
+.tip-buttons .tip-button {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+  .tip-buttons {
+    grid-template-columns: repeat(3, 1fr);
+  }
+} 
