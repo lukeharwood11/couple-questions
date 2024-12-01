@@ -27,8 +27,7 @@ jobs:
       - name: Install Dependencies
         run: yarn install
       - name: Build
-        env:
-          CI: false
-        run: yarn build
+        # CI=false is used to prevent warnings from being errors
+        run: CI=false yarn build
       - name: Deploy
         run: ./scripts/deploy.sh
