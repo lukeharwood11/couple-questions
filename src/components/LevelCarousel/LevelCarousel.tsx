@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
-import { MdLock, MdPlayArrow, MdChevronLeft, MdChevronRight, MdHandshake, MdMonitorHeart, MdOutlineHandshake } from 'react-icons/md';
+import {
+    MdLock,
+    MdPlayArrow,
+    MdChevronLeft,
+    MdChevronRight,
+    MdHandshake,
+    MdMonitorHeart,
+    MdOutlineHandshake,
+} from 'react-icons/md';
 import './LevelCarousel.css';
 import { useNavigate } from 'react-router-dom';
 import { getPercentageText } from '../../utils';
@@ -164,11 +172,7 @@ const LevelCarousel: React.FC<LevelCarouselProps> = ({
                 </div>
             </motion.div>
 
-            <button
-                className="nav-button right"
-                onClick={() => navigate(1)}
-                disabled={activeIndex === levels.length}
-            >
+            <button className="nav-button right" onClick={() => navigate(1)} disabled={activeIndex === levels.length}>
                 <MdChevronRight size={30} />
             </button>
         </div>

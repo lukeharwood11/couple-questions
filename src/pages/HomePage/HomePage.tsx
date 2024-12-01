@@ -80,7 +80,7 @@ const HomePage: React.FC = () => {
             y: 0,
             transition: {
                 duration: 0.8,
-                ease: "easeOut",
+                ease: 'easeOut',
             },
         },
     };
@@ -105,21 +105,29 @@ const HomePage: React.FC = () => {
         <div className="home-container">
             <motion.div className="home-content" variants={containerVariants} initial="hidden" animate="visible">
                 <motion.div>
-                    <motion.h1 
-                        className="home-title" 
-                        variants={titleVariants} 
-                        initial="hidden" 
-                        animate="visible"
-                    >
-                        <span className="title-highlight">Just</span> a couple 
+                    <motion.h1 className="home-title" variants={titleVariants} initial="hidden" animate="visible">
+                        <span className="title-highlight">Just</span> a couple
                         <span className="title-emphasis"> questions</span>...
                     </motion.h1>
-                    <motion.div 
-                    className="home-title-buttons">
-                        <motion.button className="home-nav-button" onClick={() => navigate('/thank-you')} whileHover={{ boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.1)', transition: { duration: 0.3 } }}>
+                    <motion.div className="home-title-buttons">
+                        <motion.button
+                            className="home-nav-button"
+                            onClick={() => navigate('/thank-you')}
+                            whileHover={{
+                                boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.1)',
+                                transition: { duration: 0.3 },
+                            }}
+                        >
                             Note <MdInfo size={24} />
                         </motion.button>
-                        <motion.button className="home-nav-button" onClick={() => setShowWelcomePopup(true)} whileHover={{ boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.1)', transition: { duration: 0.3 } }}>
+                        <motion.button
+                            className="home-nav-button"
+                            onClick={() => setShowWelcomePopup(true)}
+                            whileHover={{
+                                boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.1)',
+                                transition: { duration: 0.3 },
+                            }}
+                        >
                             Help <MdHelp size={24} />
                         </motion.button>
                     </motion.div>

@@ -16,26 +16,26 @@ const PSAPage: React.FC = () => {
 
     const iconVariants = {
         initial: { scale: 0, rotate: -180 },
-        animate: { 
-            scale: 1, 
+        animate: {
+            scale: 1,
             rotate: 0,
             transition: {
-                type: "spring",
+                type: 'spring',
                 stiffness: 260,
-                damping: 20
-            }
+                damping: 20,
+            },
         },
-        exit: { 
+        exit: {
             scale: 0,
             rotate: 180,
             transition: {
-                duration: 0.2
-            }
-        }
+                duration: 0.2,
+            },
+        },
     };
 
     return (
-        <motion.div 
+        <motion.div
             className="thankyou-overlay"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -49,20 +49,15 @@ const PSAPage: React.FC = () => {
             >
                 <h2>Thank You for Playing!</h2>
                 <div className="thankyou-message">
-                    <p>
-                        If you enjoyed the game, share it with your friends!
-                    </p>
+                    <p>If you enjoyed the game, share it with your friends!</p>
                     <p>
                         Have any feedback, found an issue, or have an idea for a new level? Reach out to me at{' '}
-                        <span 
-                            className="email-wrapper"
-                            onClick={handleCopyEmail}
-                        >
+                        <span className="email-wrapper" onClick={handleCopyEmail}>
                             <span className="email-text">lukeharwood.dev@gmail.com</span>
                             <span className="copy-icon">
                                 <AnimatePresence mode="wait">
                                     <motion.span
-                                        className={"copy-icon"}
+                                        className={'copy-icon'}
                                         key={copied ? 'check' : 'copy'}
                                         variants={iconVariants}
                                         initial="initial"
@@ -84,4 +79,4 @@ const PSAPage: React.FC = () => {
     );
 };
 
-export default PSAPage; 
+export default PSAPage;
