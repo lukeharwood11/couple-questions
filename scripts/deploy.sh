@@ -3,8 +3,6 @@
 # Exit on any error
 set -e
 
-yarn build
-
 # Configuration
 BUCKET="s3://justacouplequestions.com"
 BUILD_DIR="build"
@@ -24,13 +22,11 @@ aws s3 sync $BUILD_DIR $BUCKET \
     --delete \
     --cache-control "max-age=31536000" \
     --exclude "*.html" \
-    --exclude "service-worker.js"
 
 # Upload HTML files and service worker with no-cache
 aws s3 sync $BUILD_DIR $BUCKET \
     --exclude "*" \
     --include "*.html" \
-    --include "service-worker.js" \
     --cache-control "no-cache"
 
 echo "Deployment complete!" 

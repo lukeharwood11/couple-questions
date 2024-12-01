@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 import { motion, PanInfo } from 'framer-motion';
-import {
-    MdLock,
-    MdPlayArrow,
-    MdChevronLeft,
-    MdChevronRight,
-    MdOutlineHandshake,
-} from 'react-icons/md';
+import { MdLock, MdPlayArrow, MdChevronLeft, MdChevronRight, MdOutlineHandshake } from 'react-icons/md';
 import './LevelCarousel.css';
 import { useNavigate } from 'react-router-dom';
 import { getPercentageText } from '../../utils';
