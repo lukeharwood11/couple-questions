@@ -31,6 +31,7 @@ function App() {
                             <Route path="6" element={<LevelSixPage />} />
                             <Route path="7" element={<LevelSevenPage />} />
                             <Route path="8" element={<LevelEightPage />} />
+                            {/* Add new levels here */}
                         </Route>
 
                         <Route path="/thank-you" element={<PSAPage />} />

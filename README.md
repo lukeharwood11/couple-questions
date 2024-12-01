@@ -1,6 +1,8 @@
 # Just a Couple Questions (JaCQ)
 
-A fun game where players try to leave no tip while navigating through increasingly challenging scenarios.
+> "It's just gonna ask you a couple questions..."
+
+A puzzle game where players try to leave no tip while navigating through increasingly challenging scenarios.
 
 To play visit [JustACoupleQuestions.com](https://justacouplequestions.com).
 
@@ -116,7 +118,7 @@ export default LevelNinePage;
 Add the new level route in your routing configuration:
 
 ```typescript
-<Route path="/level/9" element={<LevelNinePage />} />
+<Route path="9" element={<LevelNinePage />} />
 ```
 
 8. Testing:
@@ -133,6 +135,6 @@ For examples of different level mechanics, see:
 - Level 7: Time-based challenges
 - Level 8: Multi-step questionnaire
 
-### Contributing
+## Contributing
 
 Open up an issue for a new level or feel free to open a PR to submit your own!
