@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import TipButton from '../../components/TipButton/TipButton';
@@ -15,7 +15,7 @@ const LevelFourPage: React.FC = () => {
     const [showModal, setShowModal] = useState(false);
     const [showCustomTipModal, setShowCustomTipModal] = useState(false);
     const [isCustomTip, setIsCustomTip] = useState(false);
-    const [tipPercentages, setTipPercentages] = useState([15, 30, 45, 60, 600, 6000]);
+    const tipPercentages = [15, 30, 45, 60, 600, 6000];
     const level = levelData.levels[3];
     const baseAmount = level.baseAmount;
     const navigate = useNavigate();

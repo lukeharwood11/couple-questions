@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { MdHelp, MdInfo, MdLock, MdPlayArrow } from 'react-icons/md';
+import { MdHelp, MdInfo, } from 'react-icons/md';
 import './HomePage.css';
 import levelData from '../meta/levels.json';
 import WelcomePopup from '../../components/WelcomePopup/WelcomePopup';

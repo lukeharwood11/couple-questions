@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import TipButton from '../../components/TipButton/TipButton';
 import TipView from '../../components/TipView/TipView';
 import LevelOverModal from '../../components/LevelOverModal/LevelOverModal';
-import CustomTextModal from '../../components/CustomTextModal/CustomTextModal';
 import '../shared/LevelPages.css';
 import levelData from '../meta/levels.json';
 import toast from 'react-hot-toast';
@@ -16,9 +15,7 @@ const LevelSevenPage: React.FC = () => {
     const [selectedTipIndex, setSelectedTipIndex] = useState<number | null>(null);
     const [showLevelOverModal, setShowLevelOverModal] = useState(false);
     const [customAmounts, setCustomAmounts] = useState<number[]>([21, 22, 23, 24, 25, 0]);
-    const [customTextModal, setCustomTextModal] = useState(false);
     const [clickHistory, setClickHistory] = useState<number[]>([]);
-    const [hasUnlocked, setHasUnlocked] = useState(false);
     const level = levelData.levels[6];
     const baseAmount = level.baseAmount;
     const navigate = useNavigate();

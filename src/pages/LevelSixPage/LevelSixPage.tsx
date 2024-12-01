@@ -75,14 +75,6 @@ const LevelSixPage: React.FC = () => {
         setSelectedTip(selectedTipIndex !== null ? customAmounts[selectedTipIndex] : null);
     }, [customAmounts, selectedTipIndex]);
 
-    const handleTipSelect = (percentage: number) => {
-        if (percentage === -1) {
-            setSelectedTipIndex(null);
-        } else {
-            setSelectedTip(percentage);
-        }
-    };
-
     const handleSubmit = () => {
         localStorage.setItem('level6Complete', 'true');
         localStorage.setItem('level6Tip', selectedTip?.toString() || '0');

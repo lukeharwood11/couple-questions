@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { toast } from 'react-hot-toast';
 import TipButton from '../../components/TipButton/TipButton';
 import TipView from '../../components/TipView/TipView';
 import LevelOverModal from '../../components/LevelOverModal/LevelOverModal';
