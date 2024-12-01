@@ -3,6 +3,8 @@
 # Exit on any error
 set -e
 
+yarn build
+
 # Configuration
 BUCKET="s3://justacouplequestions.com"
 BUILD_DIR="build"
@@ -12,6 +14,8 @@ if [ ! -d "$BUILD_DIR" ]; then
     echo "Error: Build directory not found!"
     exit 1
 fi
+
+echo "Deploying to $BUCKET..."
 
 # Sync build directory to S3 bucket
 # --delete removes files in the bucket that aren't in the local build
