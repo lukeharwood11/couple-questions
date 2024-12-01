@@ -1,4 +1,4 @@
-name: Deploy Application
+name: Build Application
 
 on:
   # merge requests to main will trigger a build or manual dispatch
