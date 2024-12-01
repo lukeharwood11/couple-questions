@@ -1,0 +1,22 @@
+name: Deploy Application
+
+on:
+  # merge requests to main will trigger a build or manual dispatch
+  workflow_dispatch: 
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '23'
+          cache: 'npm'
+      - name: Install Dependencies
+        run: yarn install
+      - name: Build
+        run: yarn build
