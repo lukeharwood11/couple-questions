@@ -9,6 +9,7 @@ import CustomTipModal from '../../components/CustomTipModal/CustomTipModal';
 import './LevelOnePage.css';
 import '../shared/LevelPages.css';
 import levelData from '../meta/levels.json';
+import { getPercentageText } from '../../utils';
 
 const LevelOnePage: React.FC = () => {
     const [selectedTip, setSelectedTip] = useState<number | null>(null);
@@ -93,7 +94,7 @@ const LevelOnePage: React.FC = () => {
                         percentage={-1}
                         onClick={handleTipSelect}
                         isSelected={isCustomTip}
-                        customText={isCustomTip ? `${selectedTip?.toFixed(1)}%` : 'Other'}
+                        customText={isCustomTip ? getPercentageText(selectedTip || 0) : 'Other'}
                     />
                 </motion.div>
                 <motion.button

@@ -8,6 +8,7 @@ import CustomTipModal from '../../components/CustomTipModal/CustomTipModal';
 import './LevelFourPage.css';
 import '../shared/LevelPages.css';
 import levelData from '../meta/levels.json';
+import { getPercentageText } from '../../utils';
 
 const LevelFourPage: React.FC = () => {
     const [selectedTip, setSelectedTip] = useState<number | null>(null);
@@ -134,7 +135,7 @@ const LevelFourPage: React.FC = () => {
                                 percentage={-1}
                                 onClick={handleTipSelect}
                                 isSelected={isCustomTip}
-                                customText={isCustomTip ? `${selectedTip?.toFixed(1)}%` : 'Custom Amount'}
+                                customText={isCustomTip ? getPercentageText(selectedTip || 0) : 'Custom Amount'}
                             />
                             <p>Well, you were right...</p>
                         </motion.div>

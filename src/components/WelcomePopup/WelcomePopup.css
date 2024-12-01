@@ -15,11 +15,13 @@
   background-color: #2c3e50;
   border: 2px solid #3498db;
   border-radius: 10px;
-  padding: 2rem;
+  padding: 1rem;
   max-width: 500px;
   color: #ecf0f1;
   text-align: center;
   box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
+  margin: 1rem;
+  box-sizing: border-box;
 }
 
 .welcome-popup h2 {

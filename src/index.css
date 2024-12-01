@@ -2,7 +2,9 @@
   --primary-gradient: linear-gradient(135deg, #4B79A1, #283E51);
   --secondary-gradient: linear-gradient(135deg, #667eea, #764ba2);
   --primary-color: #4B79A1;
-  --secondary-color: #667eea;
+  --secondary-color: #764ba2;
+  --tertiary-color: #2196F3;
+  --error-color: #ef8383;
   --text-primary: #2c3e50;
   --text-secondary: #34495e;
   --background-light: #f8fafc;

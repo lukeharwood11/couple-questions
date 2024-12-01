@@ -67,7 +67,6 @@ const LevelSixPage: React.FC = () => {
             setHasUnlocked(true);
             setTimeout(() => {
                 setCustomAmounts((prev) => prev.map((amount, i) => (i === 0 ? 0 : amount)));
-                toast.success('You found the secret combination!');
             }, 400);
         }
     };

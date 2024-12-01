@@ -8,6 +8,7 @@ import CustomTipModal from '../../components/CustomTipModal/CustomTipModal';
 import './LevelThreePage.css';
 import '../shared/LevelPages.css';
 import levelData from '../meta/levels.json';
+import { getPercentageText } from '../../utils';
 
 const LevelThreePage: React.FC = () => {
     const [selectedTip, setSelectedTip] = useState<number | null>(null);
@@ -115,7 +116,7 @@ const LevelThreePage: React.FC = () => {
                         percentage={-1}
                         onClick={handleTipSelect}
                         isSelected={isCustomTip}
-                        customText={isCustomTip ? `${selectedTip?.toFixed(1)}%` : 'Custom Amount'}
+                        customText={isCustomTip ? getPercentageText(selectedTip || 0) : 'Custom Amount'}
                     />
                 </div>
             </div>

@@ -3,6 +3,7 @@ import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import { MdLock, MdPlayArrow, MdChevronLeft, MdChevronRight, MdHandshake, MdMonitorHeart, MdOutlineHandshake } from 'react-icons/md';
 import './LevelCarousel.css';
 import { useNavigate } from 'react-router-dom';
+import { getPercentageText } from '../../utils';
 
 interface Level {
     id: number;
@@ -129,7 +130,7 @@ const LevelCarousel: React.FC<LevelCarouselProps> = ({
                                     <>
                                         {isComplete ? (
                                             <div className="tip-result" style={{ color: statusColor }}>
-                                                {tipPercentage}% tip
+                                                {getPercentageText(tipPercentage)} tip
                                             </div>
                                         ) : (
                                             <MdPlayArrow className="play-icon" />
@@ -143,7 +144,7 @@ const LevelCarousel: React.FC<LevelCarouselProps> = ({
 
                     <motion.div
                         key="author-note"
-                        onClick={() => reactNavigate('/psa')}
+                        onClick={() => reactNavigate('/thank-you')}
                         className={`carousel-card ${activeIndex === levels.length ? 'active' : ''}`}
                         animate={getCardVariants(levels.length)}
                         transition={{
@@ -156,7 +157,7 @@ const LevelCarousel: React.FC<LevelCarouselProps> = ({
                             left: '50%',
                         }}
                     >
-                        <h2>Level X: PSA</h2>
+                        <h2>Level X: Feedback</h2>
                         <MdOutlineHandshake size={30} />
                         <p>Thank you for playing!</p>
                     </motion.div>

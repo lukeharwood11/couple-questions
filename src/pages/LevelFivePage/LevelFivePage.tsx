@@ -11,6 +11,7 @@ import '../shared/LevelPages.css';
 import levelData from '../meta/levels.json';
 import toast from 'react-hot-toast';
 import { MdChat } from 'react-icons/md';
+import { getPercentageText } from '../../utils';
 
 const LevelFivePage: React.FC = () => {
     const [selectedTip, setSelectedTip] = useState<number | null>(null);
@@ -98,7 +99,7 @@ const LevelFivePage: React.FC = () => {
                         percentage={-1}
                         onClick={handleTipSelect}
                         isSelected={isCustomTip}
-                        customText={isCustomTip ? `${selectedTip?.toFixed(1)}%` : 'Other'}
+                        customText={isCustomTip ? getPercentageText(selectedTip ?? 0) : 'Other'}
                     />
                 </motion.div>
                 <motion.button

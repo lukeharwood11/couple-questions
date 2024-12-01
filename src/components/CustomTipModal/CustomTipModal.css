@@ -33,7 +33,7 @@
 }
 
 .error-message {
-  color: #f44336;
+  color: var(--error-color);
   margin: 10px 0;
 }
 

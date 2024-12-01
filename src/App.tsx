@@ -13,7 +13,7 @@ import LevelFivePage from './pages/LevelFivePage/LevelFivePage';
 import LevelSixPage from './pages/LevelSixPage/LevelSixPage';
 import LevelSevenPage from './pages/LevelSevenPage/LevelSeven';
 import LevelEightPage from './pages/LevelEightPage/LevelEightPage';
-import PSAPage from './pages/PSAPage/PSAPage';
+import PSAPage from './pages/ThankYouPage/ThankYouPage';
 
 function App() {
     return (
@@ -22,7 +22,6 @@ function App() {
                 <Routes>
                     <Route element={<Layout />}>
                         <Route path="/" element={<HomePage />} />
-
                         <Route path="/level" element={<ProtectedLevel />}>
                             <Route path="1" element={<LevelOnePage />} />
                             <Route path="2" element={<LevelTwoPage />} />
@@ -34,7 +33,7 @@ function App() {
                             <Route path="8" element={<LevelEightPage />} />
                         </Route>
 
-                        <Route path="/psa" element={<PSAPage />} />
+                        <Route path="/thank-you" element={<PSAPage />} />
 
                         <Route path="*" element={<Navigate to="/" replace />} />
                     </Route>

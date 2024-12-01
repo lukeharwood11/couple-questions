@@ -23,11 +23,11 @@ const WelcomePopup: React.FC<WelcomePopupProps> = ({ isOpen, onClose }) => {
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.5, opacity: 0 }}
                     >
-                        <h2>Welcome to a Tipping Game!</h2>
+                        <h2>Welcome to <br/>"Just a couple questions..."</h2>
                         <p>Think you're good at evading tips? Let's test you!</p>
                         <p>
                             You'll have to pretend you don't care about the social pressure of tipping. The rules are
-                            simple, try to leave as little of a tip as possible. But here's the twist: while it's{' '}
+                            simple: try to escape the level without tipping. But there's a twist. While it's{' '}
                             <u>
                                 <strong>always</strong>
                             </u>{' '}

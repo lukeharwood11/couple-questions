@@ -26,14 +26,12 @@ const HomePage: React.FC = () => {
 
     const getLevelStatus = (level: number) => {
         const isComplete = localStorage.getItem(`level${level}Complete`) === 'true';
-        const tipPercentage = parseInt(localStorage.getItem(`level${level}Tip`) || '0');
+        const tipPercentage = parseFloat(localStorage.getItem(`level${level}Tip`) || '0');
 
         let statusColor = '#666'; // Default gray for locked levels
         if (isComplete) {
-            if (tipPercentage === 0) statusColor = '#4CAF50';
-            else if (tipPercentage <= 15) statusColor = '#FFC107';
-            else if (tipPercentage <= 20) statusColor = '#FF9800';
-            else statusColor = '#F44336';
+            if (tipPercentage === 0) statusColor = 'var(--tertiary-color)';
+            else statusColor = 'var(--error-color)';
         }
 
         return { isComplete, tipPercentage, statusColor };
@@ -44,13 +42,14 @@ const HomePage: React.FC = () => {
         return localStorage.getItem(`level${level - 1}Complete`) === 'true';
     };
 
-    const getNextAvailableLevel = () => {
-        for (let i = 1; i <= levels.length; i++) {
-            if (!localStorage.getItem(`level${i}Complete`)) {
+    const getLastCompletedLevel = () => {
+        // Start from the highest level and work backwards
+        for (let i = levels.length; i >= 1; i--) {
+            if (localStorage.getItem(`level${i}Complete`) === 'true') {
                 return i;
             }
         }
-        return null;
+        return 1; // Return 1 if no levels are completed
     };
 
     const containerVariants = {
@@ -74,12 +73,14 @@ const HomePage: React.FC = () => {
     const titleVariants = {
         hidden: {
             opacity: 0,
+            y: -20,
         },
         visible: {
             opacity: 1,
+            y: 0,
             transition: {
-                duration: 0.6,
-                ease: 'easeOut',
+                duration: 0.8,
+                ease: "easeOut",
             },
         },
     };
@@ -104,12 +105,18 @@ const HomePage: React.FC = () => {
         <div className="home-container">
             <motion.div className="home-content" variants={containerVariants} initial="hidden" animate="visible">
                 <motion.div>
-                    <motion.h1 className="home-title" variants={titleVariants} initial="hidden" animate="visible">
-                        Just a couple questions...
+                    <motion.h1 
+                        className="home-title" 
+                        variants={titleVariants} 
+                        initial="hidden" 
+                        animate="visible"
+                    >
+                        <span className="title-highlight">Just</span> a couple 
+                        <span className="title-emphasis"> questions</span>...
                     </motion.h1>
                     <motion.div 
                     className="home-title-buttons">
-                        <motion.button className="home-nav-button" onClick={() => navigate('/psa')} whileHover={{ boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.1)', transition: { duration: 0.3 } }}>
+                        <motion.button className="home-nav-button" onClick={() => navigate('/thank-you')} whileHover={{ boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.1)', transition: { duration: 0.3 } }}>
                             Note <MdInfo size={24} />
                         </motion.button>
                         <motion.button className="home-nav-button" onClick={() => setShowWelcomePopup(true)} whileHover={{ boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.1)', transition: { duration: 0.3 } }}>
@@ -124,7 +131,7 @@ const HomePage: React.FC = () => {
                         onSelectLevel={(levelId) => navigate(`/level/${levelId}`)}
                         getLevelStatus={getLevelStatus}
                         isLevelAccessible={isLevelAccessible}
-                        currentLevel={getNextAvailableLevel() || 1}
+                        currentLevel={getLastCompletedLevel() || 1}
                     />
                 </motion.div>
             </motion.div>

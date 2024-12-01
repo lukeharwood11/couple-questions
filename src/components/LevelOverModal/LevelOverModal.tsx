@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import comments from '../../pages/meta/comments.json';
 import './LevelOverModal.css';
+import { getPercentageText } from '../../utils';
 
 interface LevelOverModalProps {
     isOpen: boolean;
@@ -10,6 +11,10 @@ interface LevelOverModalProps {
 }
 
 const LevelOverModal: React.FC<LevelOverModalProps> = ({ isOpen, tipPercentage, onClose }) => {
+    const getBorderColor = (percentage: number) => {
+        return percentage === 0 ? 'var(--tertiary-color)' : 'var(--error-color)';
+    };
+
     const getMessage = (percentage: number) => {
         // Get random index for selecting a comment
         const getRandomComment = (array: string[]) => {
@@ -42,15 +47,19 @@ const LevelOverModal: React.FC<LevelOverModalProps> = ({ isOpen, tipPercentage, 
                         initial={{ scale: 0.5, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.5, opacity: 0 }}
+                        style={{ borderColor: getBorderColor(tipPercentage) }}
                     >
                         <h2>Level Complete!</h2>
-                        <p className="tip-result">You tipped: {tipPercentage.toFixed(2)}%</p>
+                        <p className="tip-result" style={{ color: getBorderColor(tipPercentage) }}>
+                            You tipped: {getPercentageText(tipPercentage)}
+                        </p>
                         <p className="completion-message">{getMessage(tipPercentage)}</p>
                         <motion.button
                             className="continue-button"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={onClose}
+                            style={{ backgroundColor: getBorderColor(tipPercentage) }}
                         >
                             Continue
                         </motion.button>
