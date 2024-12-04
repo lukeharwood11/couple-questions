@@ -6,15 +6,17 @@ import './HomePage.css';
 import levelData from '../meta/levels.json';
 import WelcomePopup from '../../components/WelcomePopup/WelcomePopup';
 import LevelCarousel from '../../components/LevelCarousel/LevelCarousel';
+import ThankYouPopup from '../../components/ThankYouPopup/ThankYouPopup';
 
 const HomePage: React.FC = () => {
     const navigate = useNavigate();
     const [showWelcomePopup, setShowWelcomePopup] = useState(false);
+    const [showThanksPopup, setShowThanksPopup] = useState(false);
 
     const { levels } = levelData;
 
     useEffect(() => {
-        const hasCompletedLevelOne = localStorage.getItem('level1Complete') === 'true';
+        const hasCompletedLevelOne = localStorage.getItem('level1Tip') === '0';
         if (!hasCompletedLevelOne) {
             setShowWelcomePopup(true);
         }
@@ -26,15 +28,14 @@ const HomePage: React.FC = () => {
 
     const getLevelStatus = (level: number) => {
         const tipPercentage = parseFloat(localStorage.getItem(`level${level}Tip`) || '-1');
-        const isComplete = tipPercentage >= 0; // Any stored tip value (including 0) means complete
 
         let statusColor = '#666'; // Default gray for locked levels
-        if (isComplete) {
+        if (tipPercentage >= 0) {
             if (tipPercentage === 0) statusColor = 'var(--tertiary-color)';
             else statusColor = 'var(--error-color)';
         }
 
-        return { isComplete, tipPercentage, statusColor };
+        return { isComplete: tipPercentage === 0, tipPercentage, statusColor };
     };
 
     const isLevelAccessible = (level: number) => {
@@ -111,7 +112,7 @@ const HomePage: React.FC = () => {
                         <span className="title-emphasis"> questions</span>...
                     </motion.h1>
                     <motion.div className="home-title-buttons">
-                        <motion.button className="home-nav-button" onClick={() => navigate('/thank-you')}>
+                        <motion.button className="home-nav-button" onClick={() => setShowThanksPopup(true)}>
                             Note <MdInfo size={24} />
                         </motion.button>
                         <motion.button className="home-nav-button" onClick={() => setShowWelcomePopup(true)}>
@@ -122,6 +123,7 @@ const HomePage: React.FC = () => {
                 </motion.div>
                 <motion.div variants={itemVariants}>
                     <LevelCarousel
+                        onThanksClick={() => setShowThanksPopup(true)}
                         levels={levels}
                         onSelectLevel={(levelId) => navigate(`/level/${levelId}`)}
                         getLevelStatus={getLevelStatus}
@@ -132,6 +134,7 @@ const HomePage: React.FC = () => {
             </motion.div>
 
             <WelcomePopup isOpen={showWelcomePopup} onClose={closePopup} />
+            <ThankYouPopup isOpen={showThanksPopup} onClose={() => setShowThanksPopup(false)} />
         </div>
     );
 };

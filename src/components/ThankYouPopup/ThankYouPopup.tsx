@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import './ThankYouPage.css';
 import { MdCheck, MdContentCopy } from 'react-icons/md';
+import './ThankYouPopup.css';
 
-const PSAPage: React.FC = () => {
-    const navigate = useNavigate();
+interface ThankYouPopupProps {
+    isOpen: boolean;
+    onClose: () => void;
+}
+
+const ThankYouPopup: React.FC<ThankYouPopupProps> = ({ isOpen, onClose }) => {
     const [copied, setCopied] = useState(false);
 
     const handleCopyEmail = () => {
@@ -33,6 +36,8 @@ const PSAPage: React.FC = () => {
             },
         },
     };
+
+    if (!isOpen) return null;
 
     return (
         <motion.div
@@ -71,7 +76,7 @@ const PSAPage: React.FC = () => {
                         </span>
                     </p>
                 </div>
-                <button className="popup-close-button" onClick={() => navigate('/')}>
+                <button className="popup-close-button" onClick={onClose}>
                     Back to Home
                 </button>
             </motion.div>
@@ -79,4 +84,4 @@ const PSAPage: React.FC = () => {
     );
 };
 
-export default PSAPage;
+export default ThankYouPopup; 
