@@ -43,11 +43,11 @@ const HomePage: React.FC = () => {
         return previousLevelTip === 0;
     };
 
-    const getLastCompletedLevel = () => {
+    const getNextAvailableLevel = () => {
         // Start from the highest level and work backwards
         for (let i = levels.length; i >= 1; i--) {
-            if (localStorage.getItem(`level${i}Complete`) === 'true') {
-                return i;
+            if (localStorage.getItem(`level${i}Tip`) === '0') {
+                return i + 1;
             }
         }
         return 1; // Return 1 if no levels are completed
@@ -126,7 +126,7 @@ const HomePage: React.FC = () => {
                         onSelectLevel={(levelId) => navigate(`/level/${levelId}`)}
                         getLevelStatus={getLevelStatus}
                         isLevelAccessible={isLevelAccessible}
-                        currentLevel={getLastCompletedLevel() || 1}
+                        currentLevel={getNextAvailableLevel() || 1}
                     />
                 </motion.div>
             </motion.div>
