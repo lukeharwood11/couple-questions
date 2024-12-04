@@ -98,10 +98,10 @@
   content: '';
   position: absolute;
   width: 0;
-  height: 2px;
+  height: 3px;
   bottom: -0px;
   left: 50%;
-  background: var(--secondary-gradient);
+  background: var(--tertiary-color);
   transition: all 0.3s ease-in-out;
   transform: translateX(-50%);
 }

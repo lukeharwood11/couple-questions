@@ -113,20 +113,12 @@ const HomePage: React.FC = () => {
                         <motion.button
                             className="home-nav-button"
                             onClick={() => navigate('/thank-you')}
-                            whileHover={{
-                                boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.1)',
-                                transition: { duration: 0.3 },
-                            }}
                         >
                             Note <MdInfo size={24} />
                         </motion.button>
                         <motion.button
                             className="home-nav-button"
                             onClick={() => setShowWelcomePopup(true)}
-                            whileHover={{
-                                boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.1)',
-                                transition: { duration: 0.3 },
-                            }}
                         >
                             Help <MdHelp size={24} />
                         </motion.button>

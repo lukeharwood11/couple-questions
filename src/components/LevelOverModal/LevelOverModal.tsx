@@ -15,6 +15,16 @@ const LevelOverModal: React.FC<LevelOverModalProps> = ({ isOpen, tipPercentage, 
         return percentage === 0 ? 'var(--tertiary-color)' : 'var(--error-color)';
     };
 
+    const getTitle = (percentage: number) => {
+        if (percentage === 0) {
+            return 'Level Complete!';
+        } else if (percentage < 5) {
+            return "Close... but not quite!";
+        } else {
+            return 'Level Failed.';
+        }
+    };
+
     const getMessage = (percentage: number) => {
         // Get random index for selecting a comment
         const getRandomComment = (array: string[]) => {
@@ -24,9 +34,9 @@ const LevelOverModal: React.FC<LevelOverModalProps> = ({ isOpen, tipPercentage, 
 
         if (percentage === 0) {
             return getRandomComment(comments.noTip);
-        } else if (percentage < 10) {
+        } else if (percentage < 5) {
             return getRandomComment(comments.badTip);
-        } else if (percentage < 20) {
+        } else if (percentage < 10) {
             return getRandomComment(comments.mediumTip);
         } else {
             return getRandomComment(comments.greatTip);
@@ -49,7 +59,7 @@ const LevelOverModal: React.FC<LevelOverModalProps> = ({ isOpen, tipPercentage, 
                         exit={{ scale: 0.5, opacity: 0 }}
                         style={{ borderColor: getBorderColor(tipPercentage) }}
                     >
-                        <h2>Level Complete!</h2>
+                        <h2>{getTitle(tipPercentage)}</h2>
                         <p className="tip-result" style={{ color: getBorderColor(tipPercentage) }}>
                             You tipped: {getPercentageText(tipPercentage)}
                         </p>
