@@ -24,33 +24,34 @@ const LevelEightPage: React.FC = () => {
     const level = levelData.levels[7];
     const baseAmount = level.baseAmount;
     const navigate = useNavigate();
-    // The third one is a valid option to get wrong :)
-    const getCorrectAnswerPattern = [true, true, false, true, true];
+    // false = right, true = left
+    const getCorrectAnswerPattern = [false, true, true, true, false];
+    const goodAnswers = [true, true, false, true, false];
     const questions = [
         {
             text: 'Did you know concession workers have to stay on their feet for the entire game, even during overtime?',
-            correctAnswer: "That's tough",
-            wrongAnswer: 'Not my concern',
+            leftButtonText: "That's tough",
+            rightButtonText: 'Not my concern',
         },
         {
             text: 'This worker is a college student trying to pay for their textbooks this semester. Still want to skip the tip?',
-            correctAnswer: "I'll help out",
-            wrongAnswer: 'Most definitely',
+            leftButtonText: "I'll help out",
+            rightButtonText: 'Most definitely',
         },
         {
             text: 'Fun fact: Workers miss watching the game to serve you those nachos and drinks. Having second thoughts?',
-            correctAnswer: "I'll reconsider",
-            wrongAnswer: "That's their choice",
+            leftButtonText: "That's their choice",
+            rightButtonText: "I'll reconsider",
         },
         {
             text: 'This concession worker sprinted across the arena to get your hot food here before it got cold. Worth a tip?',
-            correctAnswer: 'They deserve it',
-            wrongAnswer: 'Just doing their job',
+            leftButtonText: 'I guess so',
+            rightButtonText: 'Definitely not',
         },
         {
             text: "Last chance: They've served hundreds of fans tonight with a smile. Still no tip?",
-            correctAnswer: "Okay, I'll tip",
-            wrongAnswer: 'Still no',
+            leftButtonText: 'Still no',
+            rightButtonText: "Okay, I'll tip",
         },
     ];
 
@@ -100,7 +101,7 @@ const LevelEightPage: React.FC = () => {
                 (answer, index) => answer === getCorrectAnswerPattern[index]
             );
 
-            const answeredAllCorrect = newAnswerHistory.every((answer) => answer);
+            const answeredAllCorrect = newAnswerHistory.every((answer, index) => answer === goodAnswers[index]);
 
             if (isPatternCorrect) {
                 setShowQuestionModal(false);
@@ -114,7 +115,7 @@ const LevelEightPage: React.FC = () => {
                 setSelectedTip(null);
                 setShowQuestionModal(false);
                 if (answeredAllCorrect) {
-                    toast.success('Awe, thanks! Just select one of the options...', { icon: <MdChat /> });
+                    toast.success('Awe, thanks! Just select one of the tip options...', { icon: <MdChat /> });
                 } else {
                     toast.error('Oh No! The system is malfunctioning... oh well, maybe try a different button?', {
                         icon: <MdChat />,
@@ -201,8 +202,8 @@ const LevelEightPage: React.FC = () => {
                 isOpen={showQuestionModal}
                 onClose={() => setShowQuestionModal(false)}
                 text={questions[questionIndex].text}
-                button1Text={questions[questionIndex].correctAnswer}
-                button2Text={questions[questionIndex].wrongAnswer}
+                button1Text={questions[questionIndex].leftButtonText}
+                button2Text={questions[questionIndex].rightButtonText}
                 button1OnClick={() => handleQuestionAnswer(true)}
                 button2OnClick={() => handleQuestionAnswer(false)}
             />
