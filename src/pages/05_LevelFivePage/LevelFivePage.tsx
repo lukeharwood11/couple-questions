@@ -58,7 +58,6 @@ const LevelFivePage: React.FC = () => {
     };
 
     const handleSubmit = () => {
-        localStorage.setItem('level5Complete', 'true');
         localStorage.setItem('level5Tip', selectedTip?.toString() || '0');
         setShowLevelOverModal(true);
     };

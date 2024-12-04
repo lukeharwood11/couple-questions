@@ -34,7 +34,6 @@ const LevelThreePage: React.FC = () => {
     };
 
     const handleSubmit = () => {
-        localStorage.setItem('level3Complete', 'true');
         localStorage.setItem('level3Tip', selectedTip?.toString() || '0');
         setShowModal(true);
     };

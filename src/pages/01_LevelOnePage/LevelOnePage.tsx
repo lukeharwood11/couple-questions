@@ -34,7 +34,6 @@ const LevelOnePage: React.FC = () => {
     };
 
     const handleSubmit = () => {
-        localStorage.setItem('level1Complete', 'true');
         localStorage.setItem('level1Tip', selectedTip?.toString() || '0');
         setShowModal(true);
     };

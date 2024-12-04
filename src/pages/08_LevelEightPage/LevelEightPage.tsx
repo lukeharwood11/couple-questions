@@ -79,7 +79,6 @@ const LevelEightPage: React.FC = () => {
     };
 
     const handleSubmit = () => {
-        localStorage.setItem('level8Complete', 'true');
         localStorage.setItem('level8Tip', selectedTip?.toString() || '0');
         setShowModal(true);
     };

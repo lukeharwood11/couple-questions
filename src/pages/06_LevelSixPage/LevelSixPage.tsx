@@ -76,7 +76,6 @@ const LevelSixPage: React.FC = () => {
     }, [customAmounts, selectedTipIndex]);
 
     const handleSubmit = () => {
-        localStorage.setItem('level6Complete', 'true');
         localStorage.setItem('level6Tip', selectedTip?.toString() || '0');
         setShowLevelOverModal(true);
     };

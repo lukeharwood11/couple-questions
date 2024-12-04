@@ -25,8 +25,8 @@ const HomePage: React.FC = () => {
     };
 
     const getLevelStatus = (level: number) => {
-        const isComplete = localStorage.getItem(`level${level}Complete`) === 'true';
-        const tipPercentage = parseFloat(localStorage.getItem(`level${level}Tip`) || '0');
+        const tipPercentage = parseFloat(localStorage.getItem(`level${level}Tip`) || '-1');
+        const isComplete = tipPercentage >= 0; // Any stored tip value (including 0) means complete
 
         let statusColor = '#666'; // Default gray for locked levels
         if (isComplete) {
@@ -39,7 +39,8 @@ const HomePage: React.FC = () => {
 
     const isLevelAccessible = (level: number) => {
         if (level === 1) return true;
-        return localStorage.getItem(`level${level - 1}Complete`) === 'true';
+        const previousLevelTip = parseFloat(localStorage.getItem(`level${level - 1}Tip`) || '-1');
+        return previousLevelTip === 0;
     };
 
     const getLastCompletedLevel = () => {
@@ -110,16 +111,10 @@ const HomePage: React.FC = () => {
                         <span className="title-emphasis"> questions</span>...
                     </motion.h1>
                     <motion.div className="home-title-buttons">
-                        <motion.button
-                            className="home-nav-button"
-                            onClick={() => navigate('/thank-you')}
-                        >
+                        <motion.button className="home-nav-button" onClick={() => navigate('/thank-you')}>
                             Note <MdInfo size={24} />
                         </motion.button>
-                        <motion.button
-                            className="home-nav-button"
-                            onClick={() => setShowWelcomePopup(true)}
-                        >
+                        <motion.button className="home-nav-button" onClick={() => setShowWelcomePopup(true)}>
                             Help <MdHelp size={24} />
                         </motion.button>
                     </motion.div>

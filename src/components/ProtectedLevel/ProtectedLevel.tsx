@@ -7,18 +7,17 @@ const ProtectedLevel: React.FC = () => {
     const location = useLocation();
     // level is the last part of the url
     const level = location.pathname.split('/').pop();
-
     useEffect(() => {
         const levelNumber = parseInt(level || '1');
 
         // Level 1 is always accessible
         if (levelNumber === 1) return;
 
-        // Check if previous level is completed
-        const previousLevelComplete = localStorage.getItem(`level${levelNumber - 1}Complete`) === 'true';
+        // Check if previous level is completed with 0 tip
+        const previousLevelTip = parseFloat(localStorage.getItem(`level${levelNumber - 1}Tip`) || '-1');
 
-        if (!previousLevelComplete) {
-            toast.error('Complete the previous level first!', {
+        if (previousLevelTip !== 0) {
+            toast.error('Complete the previous level with no tip first!', {
                 icon: '🔒',
             });
             navigate('/', { replace: true });

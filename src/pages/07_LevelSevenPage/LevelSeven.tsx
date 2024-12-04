@@ -108,7 +108,6 @@ const LevelSevenPage: React.FC = () => {
     }, [intervalId]);
 
     const handleSubmit = () => {
-        localStorage.setItem('level7Complete', 'true');
         localStorage.setItem('level7Tip', selectedTip?.toString() || '0');
         setShowLevelOverModal(true);
     };

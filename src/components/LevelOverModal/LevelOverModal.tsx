@@ -19,7 +19,7 @@ const LevelOverModal: React.FC<LevelOverModalProps> = ({ isOpen, tipPercentage, 
         if (percentage === 0) {
             return 'Level Complete!';
         } else if (percentage < 5) {
-            return "Close... but not quite!";
+            return 'Close... but not quite!';
         } else {
             return 'Level Failed.';
         }

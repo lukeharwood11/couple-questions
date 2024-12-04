@@ -38,7 +38,6 @@ const LevelFourPage: React.FC = () => {
 
     const handleSubmit = () => {
         // Reset the visit count when submitting
-        localStorage.setItem('level4Complete', 'true');
         sessionStorage.setItem('level4VisitCount', '0');
         localStorage.setItem('level4Tip', selectedTip?.toString() || '0');
         setShowModal(true);

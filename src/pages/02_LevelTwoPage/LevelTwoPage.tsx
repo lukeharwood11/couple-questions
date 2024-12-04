@@ -34,7 +34,6 @@ const LevelTwoPage: React.FC = () => {
     };
 
     const handleSubmit = () => {
-        localStorage.setItem('level2Complete', 'true');
         localStorage.setItem('level2Tip', selectedTip?.toString() || '0');
         setShowLevelOverModal(true);
     };
