@@ -19,7 +19,7 @@ const TipView: React.FC<TipViewProps> = ({ baseAmount, tipPercentage }) => {
             </div>
             <div className="amount-row">
                 {tipPercentage === null && <span>Tip:</span>}
-                {tipPercentage !== null && <span>Tip ({tipPercentage?.toFixed(2)}%):</span>}
+                {tipPercentage !== null && <span>Tip ({tipPercentage === 0 ? tipPercentage : tipPercentage?.toFixed(2)}%):</span>}
                 {tipPercentage !== null && <span>${tipAmount.toFixed(2)}</span>}
             </div>
             <div className="amount-row total">

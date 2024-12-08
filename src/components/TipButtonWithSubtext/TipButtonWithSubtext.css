@@ -1,0 +1,37 @@
+.tip-button-with-subtext {
+    padding: 15px 40px;
+    border: 2px solid var(--primary-color);
+    border-radius: var(--radius-sm);
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-primary);
+    min-width: 130px;
+    font-size: 1.4rem;
+    text-wrap: nowrap;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.tip-button-with-subtext:hover {
+    background-color: var(--background-light);
+    box-shadow: var(--shadow-md);
+}
+
+.tip-button-with-subtext.selected {
+    background: var(--secondary-gradient);
+    color: white;
+}
+
+.tip-button-with-subtext .subtext {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.tip-button-with-subtext:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+} 

@@ -40,8 +40,36 @@ const HomePage: React.FC = () => {
 
     const isLevelAccessible = (level: number) => {
         if (level === 1) return true;
-        const previousLevelTip = parseFloat(localStorage.getItem(`level${level - 1}Tip`) || '-1');
-        return previousLevelTip === 0;
+        
+        // Find the last completed level and count non-zero tips up to that point
+        let lastCompletedLevel = 0;
+        let nonZeroTips = 0;
+        
+        // First find the last completed level
+        for (let i = level - 1; i >= 1; i--) {
+            const tipValue = localStorage.getItem(`level${i}Tip`);
+            if (tipValue === '0') {
+                lastCompletedLevel = i;
+                break;
+            }
+        }
+
+        // Then count non-zero tips only up to the last completed level
+        for (let i = 1; i <= lastCompletedLevel; i++) {
+            const tipValue = localStorage.getItem(`level${i}Tip`);
+            if (tipValue !== null && parseFloat(tipValue) > 0) {
+                nonZeroTips++;
+            }
+        }
+
+        // If level 1 isn't completed, only allow access to levels 1 and 2
+        if (lastCompletedLevel === 0) {
+            return level <= 2;
+        }
+
+        // Allow access if within (2 - nonZeroTips) levels of the last completed level
+        const lookAhead = Math.max(0, 2 - nonZeroTips);
+        return level <= lastCompletedLevel + lookAhead;
     };
 
     const getNextAvailableLevel = () => {

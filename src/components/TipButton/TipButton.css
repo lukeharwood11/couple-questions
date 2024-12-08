@@ -7,7 +7,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   color: var(--text-primary);
-  min-width: 120px;
+  min-width: 130px;
   text-wrap: nowrap;
   text-align: center;
   display: flex;
