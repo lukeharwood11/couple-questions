@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion, PanInfo } from 'framer-motion';
 import { MdLock, MdPlayArrow, MdChevronLeft, MdChevronRight, MdOutlineHandshake } from 'react-icons/md';
 import './LevelCarousel.css';
-import { useNavigate } from 'react-router-dom';
 import { getPercentageText } from '../../utils';
 
 interface Level {
@@ -16,6 +15,7 @@ interface LevelCarouselProps {
     getLevelStatus: (level: number) => { isComplete: boolean; tipPercentage: number; statusColor: string };
     isLevelAccessible: (level: number) => boolean;
     currentLevel: number;
+    onThanksClick: () => void;
 }
 
 const LevelCarousel: React.FC<LevelCarouselProps> = ({
@@ -24,11 +24,10 @@ const LevelCarousel: React.FC<LevelCarouselProps> = ({
     getLevelStatus,
     isLevelAccessible,
     currentLevel,
+    onThanksClick,
 }) => {
     const [activeIndex, setActiveIndex] = useState(currentLevel - 1);
     const [isDragging, setIsDragging] = useState(false);
-
-    const reactNavigate = useNavigate();
 
     const navigate = (newDirection: number) => {
         const newIndex = activeIndex + newDirection;
@@ -93,7 +92,7 @@ const LevelCarousel: React.FC<LevelCarouselProps> = ({
                         const { isComplete, tipPercentage, statusColor } = getLevelStatus(level.id);
                         const accessible = isLevelAccessible(level.id);
                         const isActive = index === activeIndex;
-                        const isNextLevel = level.id === getNextUnfinishedLevel();
+                        const isNextLevel = level.id === getNextUnfinishedLevel() && tipPercentage < 0;
 
                         return (
                             <motion.div
@@ -128,7 +127,7 @@ const LevelCarousel: React.FC<LevelCarouselProps> = ({
                                     </>
                                 ) : (
                                     <>
-                                        {isComplete ? (
+                                        {tipPercentage >= 0 ? (
                                             <div className="tip-result" style={{ color: statusColor }}>
                                                 {getPercentageText(tipPercentage)} tip
                                             </div>
@@ -144,7 +143,7 @@ const LevelCarousel: React.FC<LevelCarouselProps> = ({
 
                     <motion.div
                         key="author-note"
-                        onClick={() => reactNavigate('/thank-you')}
+                        onClick={() => onThanksClick()}
                         className={`carousel-card ${activeIndex === levels.length ? 'active' : ''}`}
                         animate={getCardVariants(levels.length)}
                         transition={{

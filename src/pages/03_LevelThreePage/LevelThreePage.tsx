@@ -34,7 +34,6 @@ const LevelThreePage: React.FC = () => {
     };
 
     const handleSubmit = () => {
-        localStorage.setItem('level3Complete', 'true');
         localStorage.setItem('level3Tip', selectedTip?.toString() || '0');
         setShowModal(true);
     };
@@ -57,7 +56,7 @@ const LevelThreePage: React.FC = () => {
                 </h1>
                 <p className="level-subtitle">{level.subtitle}</p>
                 <div className="tip-container">
-                    <TipView baseAmount={baseAmount} tipPercentage={selectedTip ?? 0} />
+                    <TipView baseAmount={baseAmount} tipPercentage={selectedTip} />
                     <motion.div
                         className="tip-buttons"
                         initial={{ opacity: 0 }}

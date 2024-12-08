@@ -47,6 +47,18 @@
       "title": "The Basketball Game",
       "subtitle": "A soda? That'll be $30.00, and it's just going to ask you a couple questions...",
       "baseAmount": 30.00
+    },
+    {
+      "id": 9,
+      "title": "The Doctor's Office",
+      "subtitle": "Alrighty, you're all set! Now it's just going to ask you a couple questions...",
+      "baseAmount": 1500.00
+    },
+    {
+      "id": 10,
+      "title": "The Bank",
+      "subtitle": "You're approved for a loan! After you sign there, it's just going to ask you a couple questions...",
+      "baseAmount": 10000.00
     }
   ]
 }

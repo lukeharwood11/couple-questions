@@ -34,9 +34,14 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
+  width: 100%;
 }
 
 .modal-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 200px;
   background-color: #3498db;
   color: white;
   border: none;

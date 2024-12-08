@@ -2,19 +2,19 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import HomePage from './pages/HomePage/HomePage';
-import LevelOnePage from './pages/LevelOnePage/LevelOnePage';
-import LevelTwoPage from './pages/LevelTwoPage/LevelTwoPage';
-import LevelThreePage from './pages/LevelThreePage/LevelThreePage';
+import LevelOnePage from './pages/01_LevelOnePage/LevelOnePage';
+import LevelTwoPage from './pages/02_LevelTwoPage/LevelTwoPage';
+import LevelThreePage from './pages/03_LevelThreePage/LevelThreePage';
 import Layout from './components/Layout/Layout';
 import ProtectedLevel from './components/ProtectedLevel/ProtectedLevel';
 import './App.css';
-import LevelFourPage from './pages/LevelFourPage/LevelFourPage';
-import LevelFivePage from './pages/LevelFivePage/LevelFivePage';
-import LevelSixPage from './pages/LevelSixPage/LevelSixPage';
-import LevelSevenPage from './pages/LevelSevenPage/LevelSeven';
-import LevelEightPage from './pages/LevelEightPage/LevelEightPage';
-import PSAPage from './pages/ThankYouPage/ThankYouPage';
-
+import LevelFourPage from './pages/04_LevelFourPage/LevelFourPage';
+import LevelFivePage from './pages/05_LevelFivePage/LevelFivePage';
+import LevelSixPage from './pages/06_LevelSixPage/LevelSixPage';
+import LevelSevenPage from './pages/07_LevelSevenPage/LevelSeven';
+import LevelEightPage from './pages/08_LevelEightPage/LevelEightPage';
+import LevelNinePage from './pages/09_LevelNinePage/LevelNinePage';
+import LevelTenPage from './pages/10_LevelTenPage/LevelTenPage';
 function App() {
     return (
         <BrowserRouter>
@@ -31,10 +31,10 @@ function App() {
                             <Route path="6" element={<LevelSixPage />} />
                             <Route path="7" element={<LevelSevenPage />} />
                             <Route path="8" element={<LevelEightPage />} />
+                            <Route path="9" element={<LevelNinePage />} />
+                            <Route path="10" element={<LevelTenPage />} />
                             {/* Add new levels here */}
                         </Route>
-
-                        <Route path="/thank-you" element={<PSAPage />} />
 
                         <Route path="*" element={<Navigate to="/" replace />} />
                     </Route>

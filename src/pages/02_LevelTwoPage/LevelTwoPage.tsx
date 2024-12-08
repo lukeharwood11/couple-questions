@@ -5,17 +5,17 @@ import TipButton from '../../components/TipButton/TipButton';
 import TipView from '../../components/TipView/TipView';
 import LevelOverModal from '../../components/LevelOverModal/LevelOverModal';
 import CustomTipModal from '../../components/CustomTipModal/CustomTipModal';
-import './LevelOnePage.css';
+import './LevelTwoPage.css';
 import '../shared/LevelPages.css';
 import levelData from '../meta/levels.json';
 import { getPercentageText } from '../../utils';
 
-const LevelOnePage: React.FC = () => {
+const LevelTwoPage: React.FC = () => {
     const [selectedTip, setSelectedTip] = useState<number | null>(null);
-    const [showModal, setShowModal] = useState(false);
+    const [showLevelOverModal, setShowLevelOverModal] = useState(false);
     const [showCustomTipModal, setShowCustomTipModal] = useState(false);
     const [isCustomTip, setIsCustomTip] = useState(false);
-    const level = levelData.levels[0];
+    const level = levelData.levels[1];
     const baseAmount = level.baseAmount;
     const navigate = useNavigate();
 
@@ -34,13 +34,12 @@ const LevelOnePage: React.FC = () => {
     };
 
     const handleSubmit = () => {
-        localStorage.setItem('level1Complete', 'true');
-        localStorage.setItem('level1Tip', selectedTip?.toString() || '0');
-        setShowModal(true);
+        localStorage.setItem('level2Tip', selectedTip?.toString() || '0');
+        setShowLevelOverModal(true);
     };
 
     const handleModalClose = () => {
-        setShowModal(false);
+        setShowLevelOverModal(false);
         navigate('/');
     };
 
@@ -56,7 +55,7 @@ const LevelOnePage: React.FC = () => {
             </h1>
             <p className="level-subtitle">{level.subtitle}</p>
             <div className="tip-container">
-                <TipView baseAmount={baseAmount} tipPercentage={selectedTip ?? 0} />
+                <TipView baseAmount={baseAmount} tipPercentage={selectedTip} />
                 <motion.div
                     className="tip-buttons"
                     initial={{ opacity: 0 }}
@@ -84,10 +83,9 @@ const LevelOnePage: React.FC = () => {
                         isSelected={selectedTip === 20 && !isCustomTip}
                     />
                     <TipButton
-                        customText={'No Tip'}
-                        percentage={0}
+                        percentage={25}
                         onClick={handleTipSelect}
-                        isSelected={selectedTip === 0 && !isCustomTip}
+                        isSelected={selectedTip === 25 && !isCustomTip}
                     />
                     <TipButton
                         percentage={-1}
@@ -108,7 +106,7 @@ const LevelOnePage: React.FC = () => {
                 </motion.button>
             </div>
 
-            <LevelOverModal isOpen={showModal} tipPercentage={selectedTip ?? 0} onClose={handleModalClose} />
+            <LevelOverModal isOpen={showLevelOverModal} tipPercentage={selectedTip ?? 0} onClose={handleModalClose} />
 
             <CustomTipModal
                 isOpen={showCustomTipModal}
@@ -120,4 +118,4 @@ const LevelOnePage: React.FC = () => {
     );
 };
 
-export default LevelOnePage;
+export default LevelTwoPage;

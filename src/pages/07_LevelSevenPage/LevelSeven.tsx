@@ -108,7 +108,6 @@ const LevelSevenPage: React.FC = () => {
     }, [intervalId]);
 
     const handleSubmit = () => {
-        localStorage.setItem('level7Complete', 'true');
         localStorage.setItem('level7Tip', selectedTip?.toString() || '0');
         setShowLevelOverModal(true);
     };
@@ -131,7 +130,7 @@ const LevelSevenPage: React.FC = () => {
                 </h1>
                 <p className="level-subtitle">{level.subtitle}</p>
                 <div className="tip-container">
-                    <TipView baseAmount={baseAmount} tipPercentage={selectedTip ?? 0} />
+                    <TipView baseAmount={baseAmount} tipPercentage={selectedTip} />
                     <motion.div
                         className="tip-buttons"
                         initial={{ opacity: 0 }}

@@ -38,7 +38,6 @@ const LevelFourPage: React.FC = () => {
 
     const handleSubmit = () => {
         // Reset the visit count when submitting
-        localStorage.setItem('level4Complete', 'true');
         sessionStorage.setItem('level4VisitCount', '0');
         localStorage.setItem('level4Tip', selectedTip?.toString() || '0');
         setShowModal(true);
@@ -62,7 +61,7 @@ const LevelFourPage: React.FC = () => {
                 </h1>
                 <p className="level-subtitle">{level.subtitle}</p>
                 <div className="tip-container">
-                    <TipView baseAmount={baseAmount} tipPercentage={selectedTip ?? 0} />
+                    <TipView baseAmount={baseAmount} tipPercentage={selectedTip} />
                     <motion.div
                         className="tip-buttons"
                         initial={{ opacity: 0 }}

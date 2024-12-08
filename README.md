@@ -75,7 +75,6 @@ const LevelNinePage: React.FC = () => {
     const navigate = useNavigate();
 
     const handleSubmit = () => {
-        localStorage.setItem('level9Complete', 'true');
         localStorage.setItem('level9Tip', selectedTip?.toString() || '0');
         setShowModal(true);
     };
@@ -100,7 +99,6 @@ export default LevelNinePage;
 - `CustomTextModal`: Custom text/prompt modal
 
 5. Local Storage Keys:
-- `levelXComplete`: 'true' when level X is completed
 - `levelXTip`: Stores the tip percentage for level X
 - These are used for:
   - Level progression/unlocking

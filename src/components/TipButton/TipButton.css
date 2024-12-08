@@ -7,7 +7,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   color: var(--text-primary);
-  min-width: 120px;
+  min-width: 130px;
   text-wrap: nowrap;
   text-align: center;
   display: flex;
@@ -23,42 +23,4 @@
 .tip-button.selected {
   background: var(--secondary-gradient);
   color: white;
-}
-
-.submit-button {
-  margin-top: 20px;
-  padding: 20px 50px;
-  background: var(--secondary-gradient);
-  color: white;
-  border: none;
-  border-radius: var(--radius-sm);
-  font-size: 1.3rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  min-width: 200px;
-}
-
-.submit-button:hover {
-  transform: scale(1.05);
-  box-shadow: var(--shadow-md);
-}
-
-.submit-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-}
-
-@media (max-width: 768px) {
-  .tip-button {
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    min-width: 120px;
-  }
-  
-  .submit-button {
-    padding: 15px 40px;
-    font-size: 1.2rem;
-    min-width: 180px;
-  }
 }

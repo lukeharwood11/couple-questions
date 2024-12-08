@@ -4,11 +4,11 @@ import { motion } from 'framer-motion';
 
 interface TipViewProps {
     baseAmount: number;
-    tipPercentage: number;
+    tipPercentage: number | null;
 }
 
 const TipView: React.FC<TipViewProps> = ({ baseAmount, tipPercentage }) => {
-    const tipAmount = (baseAmount * tipPercentage) / 100;
+    const tipAmount = tipPercentage ? (baseAmount * tipPercentage) / 100 : 0;
     const totalAmount = baseAmount + tipAmount;
 
     return (
@@ -18,8 +18,9 @@ const TipView: React.FC<TipViewProps> = ({ baseAmount, tipPercentage }) => {
                 <span>${baseAmount.toFixed(2)}</span>
             </div>
             <div className="amount-row">
-                <span>Tip ({tipPercentage.toFixed(2)}%):</span>
-                <span>${tipAmount.toFixed(2)}</span>
+                {tipPercentage === null && <span>Tip:</span>}
+                {tipPercentage !== null && <span>Tip ({tipPercentage === 0 ? tipPercentage : tipPercentage?.toFixed(2)}%):</span>}
+                {tipPercentage !== null && <span>${tipAmount.toFixed(2)}</span>}
             </div>
             <div className="amount-row total">
                 <span>Total:</span>

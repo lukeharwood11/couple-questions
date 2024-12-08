@@ -1,0 +1,128 @@
+/* Import shared styles in the TSX file */
+/* Only keep unique styles for Level Two if needed */
+
+
+.tip-buttons > div {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.tip-buttons button {
+    backface-visibility: hidden;
+    transition: background-color 0.3s ease;
+}
+
+.tip-buttons button.correct {
+    background-color: #6aaa64 !important;
+    border-color: #6aaa64 !important;
+    color: white !important;
+}
+
+.tip-button-with-subtext.correct.selected {
+    background: #6aaa64 !important;
+    color: white !important;
+}
+
+.tip-button-with-subtext.present.selected {
+    background: #c9b458 !important;
+    color: white !important;
+}
+
+.tip-button-with-subtext.absent.selected {
+    background: #787c7e !important;
+    color: white !important;
+}
+
+.tip-buttons button.present {
+    background-color: #c9b458 !important;
+    border-color: #c9b458 !important;
+    color: white !important;
+}
+
+.tip-buttons button.absent {
+    background-color: #787c7e !important;
+    border-color: #787c7e !important;
+    color: white !important;
+}
+
+.error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+    padding: 2rem;
+}
+
+.error-content {
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 2rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px var(--tertiary-color);
+}
+
+.error-content p {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.error-container .submit-button {
+    margin-top: 2rem;
+}
+
+.subtle-letter {
+    color: var(--text-primary);
+    opacity: 0.8;
+    font-weight: 500;  /* slightly bolder than normal but not as bold as before */
+}
+
+.level-ten-subtitle {
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    text-align: center;
+    position: relative;
+}
+
+@keyframes sparkle {
+    0% {
+        background-position: -500px 0;
+    }
+    100% {
+        background-position: 500px 0;
+    }
+}
+
+.level-ten-subtitle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 45%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0.2) 55%,
+        transparent 100%
+    );
+    background-size: 1000px 100%;
+    animation: sparkle 4s linear infinite;
+    pointer-events: none;
+}
+
+.level-ten-subtitle .highlight-letter::selection {
+    font-weight: 700;
+    color: black;
+    text-decoration: underline;
+}
+
+.level-ten-subtitle::selection {
+    background: rgba(0, 0, 0, 0.1);
+}

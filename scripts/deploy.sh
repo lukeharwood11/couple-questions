@@ -22,11 +22,12 @@ aws s3 sync $BUILD_DIR $BUCKET \
     --delete \
     --cache-control "max-age=31536000" \
     --exclude "*.html" \
+    --exclude "*.js.map"
 
 # Upload HTML files and service worker with no-cache
 aws s3 sync $BUILD_DIR $BUCKET \
     --exclude "*" \
     --include "*.html" \
-    --cache-control "no-cache"
+    --cache-control "no-cache" \
 
 echo "Deployment complete!" 
