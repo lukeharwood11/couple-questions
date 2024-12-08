@@ -29,6 +29,5 @@ aws s3 sync $BUILD_DIR $BUCKET \
     --exclude "*" \
     --include "*.html" \
     --cache-control "no-cache" \
-    --exclude "*.js.map"
 
 echo "Deployment complete!" 
