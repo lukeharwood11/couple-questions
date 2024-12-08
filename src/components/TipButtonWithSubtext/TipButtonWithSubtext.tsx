@@ -1,6 +1,5 @@
 import React from 'react';
 import './TipButtonWithSubtext.css';
-import { motion } from 'framer-motion';
 
 interface TipButtonWithSubtextProps {
     percentage: number;

@@ -1,17 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import TipButtonWithSubtext from '../../components/TipButtonWithSubtext/TipButtonWithSubtext';
 import TipView from '../../components/TipView/TipView';
 import LevelOverModal from '../../components/LevelOverModal/LevelOverModal';
-import CustomTipModal from '../../components/CustomTipModal/CustomTipModal';
 import CustomTextModal from '../../components/CustomTextModal/CustomTextModal';
 import './LevelTenPage.css';
 import '../shared/LevelPages.css';
 import levelData from '../meta/levels.json';
 import toast from 'react-hot-toast';
 import { MdChat } from 'react-icons/md';
-import { getPercentageText } from '../../utils';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 interface KeypadButton {
@@ -20,10 +18,6 @@ interface KeypadButton {
     status?: 'correct' | 'present' | 'absent' | null;
 }
 
-// Add this CSS class to style the subtle letters
-const subtleText = (letter: string) => (
-    <span className="subtle-letter">{letter}</span>
-);
 
 const LevelTenPage: React.FC = () => {
     const [selectedTip, setSelectedTip] = useState<number | null>(null);
@@ -46,7 +40,6 @@ const LevelTenPage: React.FC = () => {
     const baseAmount = level.baseAmount;
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
-    const [currentAttemptIndices, setCurrentAttemptIndices] = useState<number[]>([]);
     const [buttonStatuses, setButtonStatuses] = useState<Array<'correct' | 'present' | 'absent' | null>>(
         new Array(9).fill(null)
     );
@@ -105,7 +98,7 @@ const LevelTenPage: React.FC = () => {
         if (selectedTipIndex !== null) {
             setSelectedTip(keypadButtons[selectedTipIndex].percentage);
         }
-    }, [keypadButtons]);
+    }, [keypadButtons, selectedTipIndex]);
 
     const handleSelectTip = (index: number) => {
         setSelectedTipIndex(index);
@@ -119,7 +112,6 @@ const LevelTenPage: React.FC = () => {
             // Clear the history after checking
             setTimeout(() => {
                 setLastFiveIndices([]);
-                setCurrentAttemptIndices([]);
             }, 3000);
         }
     };
@@ -166,7 +158,7 @@ const LevelTenPage: React.FC = () => {
         setTimeout(() => {
             setButtonStatuses(new Array(9).fill(null));
         }, 3000);
-    }, [targetWord]);
+    }, [targetWord, keypadButtons]);
 
     const handleSubmit = () => {
         localStorage.setItem('level10Tip', selectedTip?.toString() || '0');

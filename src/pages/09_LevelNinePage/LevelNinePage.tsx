@@ -50,7 +50,7 @@ const LevelNinePage: React.FC = () => {
                 return tipValues.map((value, index) => index === selectedIndex ? 0 : value);
             })
         }
-    }, [tip])
+    }, [tip, locked, selectedIndex, tipValues])
 
     const level = levelData.levels[8];
     const baseAmount = level.baseAmount;
