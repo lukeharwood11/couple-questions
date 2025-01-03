@@ -52,14 +52,15 @@ const ThankYouPopup: React.FC<ThankYouPopupProps> = ({ isOpen, onClose }) => {
                         initial={{ scale: 0.5, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.5, opacity: 0 }}
-                        onClick={e => e.stopPropagation()}
+                        onClick={(e) => e.stopPropagation()}
                     >
                         <h2>Thank You for Playing!</h2>
                         <div className="thankyou-message">
                             <p>If you enjoyed the game, share it with your friends!</p>
                             <p>
                                 <br />
-                                Have any feedback, found an issue, or have an idea for a new level?<br /> Reach out to me at{' '}
+                                Have any feedback, found an issue, or have an idea for a new level?
+                                <br /> Reach out to me at{' '}
                                 <span className="email-wrapper" onClick={handleCopyEmail}>
                                     <span className="email-text">feedback@justacouplequestions.com</span>
                                     <span className="copy-icon">
@@ -89,4 +90,4 @@ const ThankYouPopup: React.FC<ThankYouPopupProps> = ({ isOpen, onClose }) => {
     );
 };
 
-export default ThankYouPopup; 
+export default ThankYouPopup;

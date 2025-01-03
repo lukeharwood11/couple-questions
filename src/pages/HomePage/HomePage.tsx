@@ -40,11 +40,11 @@ const HomePage: React.FC = () => {
 
     const isLevelAccessible = (level: number) => {
         if (level === 1) return true;
-        
+
         // Find the last completed level and count non-zero tips up to that point
         let lastCompletedLevel = 0;
         let nonZeroTips = 0;
-        
+
         // First find the last completed level
         for (let i = level - 1; i >= 1; i--) {
             const tipValue = localStorage.getItem(`level${i}Tip`);

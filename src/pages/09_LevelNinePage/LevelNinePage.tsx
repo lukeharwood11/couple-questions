@@ -18,27 +18,27 @@ const LevelNinePage: React.FC = () => {
     const [locked, setLocked] = useState(false);
     const bound = (n: number) => {
         return n >= 0 ? n : null;
-    }
+    };
     const tipActions = [
         () => {
-            return setTip(prev => prev ? prev + 6 : 2);
+            return setTip((prev) => (prev ? prev + 6 : 2));
         },
         () => {
-            return setTip(prev => prev ? bound(prev - 13) : 6);
+            return setTip((prev) => (prev ? bound(prev - 13) : 6));
         },
         () => {
-            return setTip(prev => prev ? bound(prev - 23) : 8);
+            return setTip((prev) => (prev ? bound(prev - 23) : 8));
         },
         () => {
-            return setTip(prev => prev ? prev + 2 : 10);
+            return setTip((prev) => (prev ? prev + 2 : 10));
         },
         () => {
-            return setTip(prev => prev ? bound(prev + 13) : 12);
+            return setTip((prev) => (prev ? bound(prev + 13) : 12));
         },
         () => {
-            return setTip(prev => prev ? null : 14);
+            return setTip((prev) => (prev ? null : 14));
         },
-    ]
+    ];
 
     useEffect(() => {
         if (locked) return;
@@ -47,22 +47,20 @@ const LevelNinePage: React.FC = () => {
         } else if (tip === 0) {
             setLocked(true);
             setTipValues(() => {
-                return tipValues.map((value, index) => index === selectedIndex ? 0 : value);
-            })
+                return tipValues.map((value, index) => (index === selectedIndex ? 0 : value));
+            });
         }
-    }, [tip, locked, selectedIndex, tipValues])
+    }, [tip, locked, selectedIndex, tipValues]);
 
     const level = levelData.levels[8];
     const baseAmount = level.baseAmount;
     const navigate = useNavigate();
-
 
     const handleTipSelect = (index: number) => {
         if (locked) return;
         setSelectedIndex(index);
         tipActions[index]();
     };
-
 
     const handleSubmit = () => {
         localStorage.setItem('level9Tip', tip?.toString() || '0');
@@ -108,11 +106,11 @@ const LevelNinePage: React.FC = () => {
                                     : {}
                             }
                         >
-                            <TipButton 
-                                key={index} 
-                                isSelected={selectedIndex === index} 
-                                percentage={value} 
-                                onClick={() => handleTipSelect(index)} 
+                            <TipButton
+                                key={index}
+                                isSelected={selectedIndex === index}
+                                percentage={value}
+                                onClick={() => handleTipSelect(index)}
                             />
                         </motion.div>
                     ))}
@@ -137,7 +135,6 @@ const LevelNinePage: React.FC = () => {
                 onSubmit={handleSubmit}
                 baseAmount={baseAmount}
             />
-
         </motion.div>
     );
 };
