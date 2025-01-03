@@ -79,9 +79,7 @@ const LevelNinePage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
         >
-            <h1 className="level-title">
-                {level.title}
-            </h1>
+            <h1 className="level-title">{level.title}</h1>
             <p className="level-subtitle">{level.subtitle}</p>
             <div className="tip-container">
                 <TipView baseAmount={baseAmount} tipPercentage={tip} />
