@@ -54,10 +54,8 @@ const LevelTenPage: React.FC = () => {
     };
 
     const getTargetWord = async (date: string) => {
-        const corsProxy = 'https://corsproxy.io/?' // You can also use 'https://api.allorigins.win/raw?url=' as an alternative
-        const nytUrl = `https://www.nytimes.com/svc/wordle/v2/${date}.json`;
-        const response = await fetch(`${corsProxy}${encodeURIComponent(nytUrl)}`);
-        
+        const url = `https://api.justacouplequestions.com/level10/${date}`;
+        const response = await fetch(url);
         if (!response.ok) {
             throw new Error('Failed to fetch word');
         }

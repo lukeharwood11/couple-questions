@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MdCheck, MdContentCopy } from 'react-icons/md';
+import { MdCheck, MdContentCopy, MdClose } from 'react-icons/md';
 import './ThankYouPopup.css';
 
 interface ThankYouPopupProps {
@@ -37,50 +37,54 @@ const ThankYouPopup: React.FC<ThankYouPopupProps> = ({ isOpen, onClose }) => {
         },
     };
 
-    if (!isOpen) return null;
-
     return (
-        <motion.div
-            className="thankyou-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-        >
-            <motion.div
-                className="thankyou-popup"
-                initial={{ scale: 0.5, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.5, opacity: 0 }}
-            >
-                <h2>Thank You for Playing!</h2>
-                <div className="thankyou-message">
-                    <p>If you enjoyed the game, share it with your friends!</p>
-                    <p>
-                        Have any feedback, found an issue, or have an idea for a new level? Reach out to me at{' '}
-                        <span className="email-wrapper" onClick={handleCopyEmail}>
-                            <span className="email-text">lukeharwood.dev@gmail.com</span>
-                            <span className="copy-icon">
-                                <AnimatePresence mode="wait">
-                                    <motion.span
-                                        className={'copy-icon'}
-                                        key={copied ? 'check' : 'copy'}
-                                        variants={iconVariants}
-                                        initial="initial"
-                                        animate="animate"
-                                        exit="exit"
-                                    >
-                                        {copied ? <MdCheck /> : <MdContentCopy />}
-                                    </motion.span>
-                                </AnimatePresence>
-                            </span>
-                        </span>
-                    </p>
-                </div>
-                <button className="popup-close-button" onClick={onClose}>
-                    Back to Home
-                </button>
-            </motion.div>
-        </motion.div>
+        <AnimatePresence>
+            {isOpen && (
+                <motion.div
+                    className="thankyou-overlay"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={onClose}
+                >
+                    <motion.div
+                        className="thankyou-popup"
+                        initial={{ scale: 0.5, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.5, opacity: 0 }}
+                        onClick={e => e.stopPropagation()}
+                    >
+                        <h2>Thank You for Playing!</h2>
+                        <div className="thankyou-message">
+                            <p>If you enjoyed the game, share it with your friends!</p>
+                            <p>
+                                Have any feedback, found an issue, or have an idea for a new level?<br /> Reach out to me at{' '}
+                                <span className="email-wrapper" onClick={handleCopyEmail}>
+                                    <span className="email-text">feedback@justacouplequestions.com</span>
+                                    <span className="copy-icon">
+                                        <AnimatePresence mode="wait">
+                                            <motion.span
+                                                className={'copy-icon'}
+                                                key={copied ? 'check' : 'copy'}
+                                                variants={iconVariants}
+                                                initial="initial"
+                                                animate="animate"
+                                                exit="exit"
+                                            >
+                                                {copied ? <MdCheck /> : <MdContentCopy />}
+                                            </motion.span>
+                                        </AnimatePresence>
+                                    </span>
+                                </span>
+                            </p>
+                        </div>
+                        <button className="popup-close-x" onClick={onClose}>
+                            <MdClose />
+                        </button>
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>
     );
 };
 
