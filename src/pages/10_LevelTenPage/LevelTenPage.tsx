@@ -201,11 +201,13 @@ const LevelTenPage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
         >
-            <h1 className="level-title">
-                Level {level.id}: {level.title}
+            <h1 className="level-title level-10-title">
+                <a href="https://www.nytimes.com/games/wordle/index.html" target="_blank" rel="noopener noreferrer" className="level-title">
+                    Level {level.id}: {level.title}
+                </a>
             </h1>
             <p className="level-ten-subtitle">
-                Your <span className="highlight-letter">p</span>ersonal <span className="highlight-letter">l</span>ocal b<span className="highlight-letter">a</span>nk toda<span className="highlight-letter">y</span> was <span className="highlight-letter">t</span>ruly <span className="highlight-letter">o</span>utstanding! The <span className="highlight-letter">d</span>edicated <span className="highlight-letter">a</span>ssistant helped <span className="highlight-letter">y</span>ou <span className="highlight-letter">s</span>wiftly. Their <span className="highlight-letter">w</span>arm and <span className="highlight-letter">o</span>rganized <span className="highlight-letter">r</span>esponse <span className="highlight-letter">d</span>eserves <span className="highlight-letter">l</span>ovely <span className="highlight-letter">e</span>xtra thanks!
+                Have a great rest of your day! Before you go though, please take a moment to answer just a couple questions...
             </p>
 
             <div className="tip-container">
