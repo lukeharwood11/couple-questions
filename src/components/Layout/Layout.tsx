@@ -19,6 +19,7 @@ const Layout: React.FC = () => {
                     <Link to="/" className="back-button">
                         ← Back to Levels
                     </Link>
+                    { /* put level number here */ }
                 </motion.div>
             )}
             <main className="main-content">
