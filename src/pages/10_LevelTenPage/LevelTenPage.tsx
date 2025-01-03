@@ -210,10 +210,10 @@ const LevelTenPage: React.FC = () => {
                     rel="noopener noreferrer"
                     className="level-title"
                 >
-                    Level {level.id}: {level.title}
+                    {level.title}
                 </a>
             </h1>
-            <p className="level-ten-subtitle">
+            <p className="level-subtitle">
                 Have a great rest of your day! Before you go though, please take a moment to answer just a couple
                 questions...
             </p>

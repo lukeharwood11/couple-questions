@@ -79,13 +79,6 @@
     font-weight: 500;  /* slightly bolder than normal but not as bold as before */
 }
 
-.level-ten-subtitle {
-    line-height: 1.6;
-    max-width: 800px;
-    text-align: center;
-    position: relative;
-}
-
 @keyframes sparkle {
     0% {
         background-position: -500px 0;

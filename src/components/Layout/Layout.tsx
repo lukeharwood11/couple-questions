@@ -6,6 +6,8 @@ import './Layout.css';
 const Layout: React.FC = () => {
     const location = useLocation();
     const isHomePage = location.pathname === '/';
+    const levelMatch = location.pathname.match(/\/level\/(\d+)/);
+    const levelNumber = levelMatch ? levelMatch[1] : null;
 
     return (
         <div className="layout">
@@ -19,7 +21,7 @@ const Layout: React.FC = () => {
                     <Link to="/" className="back-button">
                         ← Back to Levels
                     </Link>
-                    { /* put level number here */ }
+                    {levelNumber && <span className="level-indicator">Level {levelNumber}</span>}
                 </motion.div>
             )}
             <main className="main-content">
