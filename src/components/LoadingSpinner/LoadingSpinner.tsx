@@ -32,7 +32,7 @@ const LoadingSpinner: React.FC = () => {
                 transition={{ duration: 0.5 }}
                 className="loading-text"
             >
-                Loading today's puzzle...
+                Prepare to tip...
             </motion.p>
         </div>
     );
