@@ -219,7 +219,7 @@ const LevelTenPage: React.FC = () => {
 
             <div className="tip-container">
                 <TipView baseAmount={baseAmount} tipPercentage={selectedTip} />
-                {!isLoading ? (
+                {isLoading ? (
                     <LoadingSpinner />
                 ) : (
                     <>
