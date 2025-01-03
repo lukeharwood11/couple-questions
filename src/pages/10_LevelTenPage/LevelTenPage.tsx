@@ -214,8 +214,7 @@ const LevelTenPage: React.FC = () => {
                 </a>
             </h1>
             <p className="level-subtitle">
-                Have a great rest of your day! Before you go though, please take a moment to answer just a couple
-                questions...
+                Good seeing you again! Now the tablet is just going to ask you a couple questions...
             </p>
 
             <div className="tip-container">

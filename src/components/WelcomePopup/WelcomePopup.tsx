@@ -126,6 +126,11 @@ const WelcomePopup: React.FC<WelcomePopupProps> = ({ isOpen, onClose }) => {
         }
     };
 
+    const handleClose = () => {
+        onClose();
+        setCurrentSection(0);
+    };
+
     return (
         <AnimatePresence>
             {isOpen && (
@@ -141,7 +146,7 @@ const WelcomePopup: React.FC<WelcomePopupProps> = ({ isOpen, onClose }) => {
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.5, opacity: 0 }}
                     >
-                        <button className="popup-close-x" onClick={onClose}>
+                        <button className="popup-close-x" onClick={handleClose}>
                             <MdClose />
                         </button>
 
@@ -158,7 +163,7 @@ const WelcomePopup: React.FC<WelcomePopupProps> = ({ isOpen, onClose }) => {
                                     Next <MdKeyboardArrowRight />
                                 </button>
                             ) : (
-                                <button className="welcome-button" onClick={onClose}>
+                                <button className="welcome-button" onClick={handleClose}>
                                     Let's Begin!
                                 </button>
                             )}

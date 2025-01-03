@@ -52,12 +52,13 @@ const LevelSevenPage: React.FC = () => {
             clearInterval(intervalId);
             setIntervalId(null);
             setTicker(0);
-            setCustomAmounts((prev) => {
-                const newAmounts = [...prev];
-                newAmounts[5] = 0;
-                return newAmounts;
-            });
         }
+
+        setCustomAmounts((prev) => {
+            const newAmounts = [...prev];
+            newAmounts[5] = 0;
+            return newAmounts;
+        });
 
         setSelectedTipIndex(index);
 
@@ -69,25 +70,28 @@ const LevelSevenPage: React.FC = () => {
                 return newAmounts;
             });
 
-            // Set interval to count up to 15 seconds
-            const interval = setInterval(() => {
-                setTicker((prev) => {
-                    if (prev >= END_TICKER) {
-                        clearInterval(interval);
-                        setIntervalId(null);
-                        setTicker(0);
-                        setCustomAmounts((prev) => {
-                            const newAmounts = [...prev];
-                            newAmounts[5] = 0;
-                            return newAmounts;
-                        });
-                        return 0;
-                    }
-                    return prev + 1;
-                });
-            }, 1000);
+            // Add 5-second delay before starting the counter
+            setTimeout(() => {
+                // Set interval to count up to 15 seconds
+                const interval = setInterval(() => {
+                    setTicker((prev) => {
+                        if (prev >= END_TICKER) {
+                            clearInterval(interval);
+                            setIntervalId(null);
+                            setTicker(0);
+                            setCustomAmounts((prev) => {
+                                const newAmounts = [...prev];
+                                newAmounts[5] = 0;
+                                return newAmounts;
+                            });
+                            return 0;
+                        }
+                        return prev + 1;
+                    });
+                }, 1000);
 
-            setIntervalId(interval);
+                setIntervalId(interval);
+            }, 5000);
         }
 
         // Update click history
@@ -108,6 +112,12 @@ const LevelSevenPage: React.FC = () => {
     }, [intervalId]);
 
     const handleSubmit = () => {
+        // Clear interval and reset states
+        if (intervalId) {
+            clearInterval(intervalId);
+            setIntervalId(null);
+            setTicker(0);
+        }
         localStorage.setItem('level7Tip', selectedTip?.toString() || '0');
         setShowLevelOverModal(true);
     };
