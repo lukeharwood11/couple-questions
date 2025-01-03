@@ -58,6 +58,7 @@ const ThankYouPopup: React.FC<ThankYouPopupProps> = ({ isOpen, onClose }) => {
                         <div className="thankyou-message">
                             <p>If you enjoyed the game, share it with your friends!</p>
                             <p>
+                                <br />
                                 Have any feedback, found an issue, or have an idea for a new level?<br /> Reach out to me at{' '}
                                 <span className="email-wrapper" onClick={handleCopyEmail}>
                                     <span className="email-text">feedback@justacouplequestions.com</span>
