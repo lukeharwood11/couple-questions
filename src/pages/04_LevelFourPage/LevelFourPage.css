@@ -37,14 +37,10 @@
 }
 
 .hidden-text {
-  cursor: pointer;
   color: #666;
   font-style: italic;
 }
 
-.hidden-text:hover {
-  text-decoration: underline;
-}
 .back {
     display: flex;
     flex-direction: column;

@@ -1,28 +1,29 @@
 .level-container {
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .level-title {
+  font-size: 1.5rem;
   text-align: center;
   color: #333;
-  margin-top: 2rem;
-  margin-bottom: 30px;
+  margin-top: 0.5rem;
+  margin-bottom: 10px;
 }
 
 .level-subtitle {
   text-align: center;
   color: var(--text-secondary);
-  margin-bottom: 2rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .tip-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
 }
 
 .tip-buttons {
@@ -33,11 +34,24 @@
 
 .tip-buttons .tip-button {
     width: 100%;
+    max-width: 130px;
 }
 
 @media (min-width: 768px) {
   .tip-buttons {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .tip-button {
+    padding: 15px 40px;
+  }
+
+  .level-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .level-title {
+    font-size: 2rem;
   }
 } 
 
@@ -69,7 +83,6 @@
   .tip-button {
     padding: 15px 30px;
     font-size: 1.2rem;
-    min-width: 120px;
   }
   
   .submit-button {

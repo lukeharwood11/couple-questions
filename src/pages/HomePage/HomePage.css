@@ -235,3 +235,25 @@
 .level-card.next-level:hover {
   box-shadow: 0 0 40px rgba(52, 152, 219, 0.8);
 }
+
+.start-over-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+}
+
+.start-over-button:hover {
+    background-color: var(--error-color-dark);
+}

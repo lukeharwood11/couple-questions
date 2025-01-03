@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { MdHelp, MdInfo } from 'react-icons/md';
+import { MdHelp, MdInfo, MdRefresh } from 'react-icons/md';
 import './HomePage.css';
 import levelData from '../meta/levels.json';
 import WelcomePopup from '../../components/WelcomePopup/WelcomePopup';
 import LevelCarousel from '../../components/LevelCarousel/LevelCarousel';
 import ThankYouPopup from '../../components/ThankYouPopup/ThankYouPopup';
+import CustomTextModal from '../../components/CustomTextModal/CustomTextModal';
 
 const HomePage: React.FC = () => {
     const navigate = useNavigate();
     const [showWelcomePopup, setShowWelcomePopup] = useState(false);
     const [showThanksPopup, setShowThanksPopup] = useState(false);
+    const [showStartOverModal, setShowStartOverModal] = useState(false);
 
     const { levels } = levelData;
 
     useEffect(() => {
-        const hasCompletedLevelOne = localStorage.getItem('level1Tip') === '0';
+        const hasCompletedLevelOne = localStorage.getItem('helpVisited') === 'true';
         if (!hasCompletedLevelOne) {
             setShowWelcomePopup(true);
         }
@@ -24,6 +26,7 @@ const HomePage: React.FC = () => {
 
     const closePopup = () => {
         setShowWelcomePopup(false);
+        localStorage.setItem('helpVisited', 'true');
     };
 
     const getLevelStatus = (level: number) => {
@@ -40,11 +43,11 @@ const HomePage: React.FC = () => {
 
     const isLevelAccessible = (level: number) => {
         if (level === 1) return true;
-        
+
         // Find the last completed level and count non-zero tips up to that point
         let lastCompletedLevel = 0;
         let nonZeroTips = 0;
-        
+
         // First find the last completed level
         for (let i = level - 1; i >= 1; i--) {
             const tipValue = localStorage.getItem(`level${i}Tip`);
@@ -131,6 +134,11 @@ const HomePage: React.FC = () => {
         },
     };
 
+    const handleStartOver = () => {
+        localStorage.clear();
+        window.location.reload();
+    };
+
     return (
         <div className="home-container">
             <motion.div className="home-content" variants={containerVariants} initial="hidden" animate="visible">
@@ -161,8 +169,26 @@ const HomePage: React.FC = () => {
                 </motion.div>
             </motion.div>
 
+            <motion.button
+                className="start-over-button"
+                onClick={() => setShowStartOverModal(true)}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+            >
+                <MdRefresh size={20} /> Start Over
+            </motion.button>
+
             <WelcomePopup isOpen={showWelcomePopup} onClose={closePopup} />
             <ThankYouPopup isOpen={showThanksPopup} onClose={() => setShowThanksPopup(false)} />
+            <CustomTextModal
+                isOpen={showStartOverModal}
+                onClose={() => setShowStartOverModal(false)}
+                text="Are you sure you want to start over? This will reset all your progress."
+                button1Text="I'm sure!"
+                button2Text="Cancel"
+                button1OnClick={handleStartOver}
+                button2OnClick={() => setShowStartOverModal(false)}
+            />
         </div>
     );
 };

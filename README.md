@@ -45,7 +45,7 @@ The game is designed with reusable components, making it easy to add new levels.
 2. Create new level files:
 
 ```text
-src/pages/LevelNinePage/
+src/pages/09_LevelNinePage/
   ├── LevelNinePage.tsx
   └── LevelNinePage.css
 ```
@@ -110,7 +110,6 @@ export default LevelNinePage;
 - Use the shared CSS from `src/pages/shared/LevelPages.css`
 - Add level-specific styles in the level's CSS file
 - Consider using existing components in creative ways
-- Leverage the comments from `src/pages/meta/comments.json` for feedback
 
 7. Update Routes:
 Add the new level route in your routing configuration:
@@ -125,13 +124,6 @@ Add the new level route in your routing configuration:
 - Check tip calculation accuracy
 - Test mobile responsiveness
 - Verify completion modal feedback
-
-For examples of different level mechanics, see:
-- Level 3: Hidden scroll for custom tip
-- Level 4: Visit count tracking
-- Level 6: Secret button combination
-- Level 7: Time-based challenges
-- Level 8: Multi-step questionnaire
 
 ## Contributing
 

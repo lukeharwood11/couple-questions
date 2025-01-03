@@ -5,23 +5,23 @@ import './LoadingSpinner.css';
 const LoadingSpinner: React.FC = () => {
     return (
         <div className="loading-container">
-            <motion.div 
+            <motion.div
                 className="loading-spinner"
-                animate={{ 
+                animate={{
                     rotate: 360,
-                    scale: [1, 1.2, 1]
+                    scale: [1, 1.2, 1],
                 }}
-                transition={{ 
+                transition={{
                     rotate: {
                         duration: 1.5,
                         repeat: Infinity,
-                        ease: "linear"
+                        ease: 'linear',
                     },
                     scale: {
                         duration: 1,
                         repeat: Infinity,
-                        ease: "easeInOut"
-                    }
+                        ease: 'easeInOut',
+                    },
                 }}
             >
                 <span className="dollar">$</span>
@@ -32,10 +32,10 @@ const LoadingSpinner: React.FC = () => {
                 transition={{ duration: 0.5 }}
                 className="loading-text"
             >
-                Loading today's puzzle...
+                Prepare to tip...
             </motion.p>
         </div>
     );
 };
 
-export default LoadingSpinner; 
+export default LoadingSpinner;

@@ -79,14 +79,6 @@
     font-weight: 500;  /* slightly bolder than normal but not as bold as before */
 }
 
-.level-ten-subtitle {
-    line-height: 1.6;
-    max-width: 800px;
-    margin: 0 auto 2rem;
-    text-align: center;
-    position: relative;
-}
-
 @keyframes sparkle {
     0% {
         background-position: -500px 0;
@@ -96,33 +88,28 @@
     }
 }
 
-.level-ten-subtitle::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
+.level-10-title {
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+    color: transparent !important;
     background: linear-gradient(
         90deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.2) 45%,
-        rgba(255, 255, 255, 0.4) 50%,
-        rgba(255, 255, 255, 0.2) 55%,
-        transparent 100%
+        #2c3e50 0%,
+        #2c3e50 45%,
+        #3498db 50%,
+        #2c3e50 55%,
+        #2c3e50 100%
     );
     background-size: 1000px 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
     animation: sparkle 4s linear infinite;
-    pointer-events: none;
 }
 
-.level-ten-subtitle .highlight-letter::selection {
-    font-weight: 700;
-    color: black;
-    text-decoration: underline;
-}
-
-.level-ten-subtitle::selection {
-    background: rgba(0, 0, 0, 0.1);
+.level-10-title a {
+    /* normal no click cursor */
+    cursor: default;
+    color: inherit;
+    text-decoration: none;
 }

@@ -16,7 +16,7 @@ const TipButtonWithSubtext: React.FC<TipButtonWithSubtextProps> = ({
     onClick,
     isSelected,
     className = '',
-    disabled = false
+    disabled = false,
 }) => {
     return (
         <button
@@ -30,4 +30,4 @@ const TipButtonWithSubtext: React.FC<TipButtonWithSubtextProps> = ({
     );
 };
 
-export default TipButtonWithSubtext; 
+export default TipButtonWithSubtext;

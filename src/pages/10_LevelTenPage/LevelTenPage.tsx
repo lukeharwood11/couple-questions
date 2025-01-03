@@ -18,7 +18,6 @@ interface KeypadButton {
     status?: 'correct' | 'present' | 'absent' | null;
 }
 
-
 const LevelTenPage: React.FC = () => {
     const [selectedTip, setSelectedTip] = useState<number | null>(null);
     const [selectedTipIndex, setSelectedTipIndex] = useState<number | null>(null);
@@ -35,7 +34,7 @@ const LevelTenPage: React.FC = () => {
     ]);
     const [customTextModal, setCustomTextModal] = useState(false);
     const [lastFiveIndices, setLastFiveIndices] = useState<Array<number>>([]);
-    const [targetWord, setTargetWord] = useState<string>("");
+    const [targetWord, setTargetWord] = useState<string>('');
     const level = levelData.levels[9];
     const baseAmount = level.baseAmount;
     const navigate = useNavigate();
@@ -43,7 +42,7 @@ const LevelTenPage: React.FC = () => {
     const [buttonStatuses, setButtonStatuses] = useState<Array<'correct' | 'present' | 'absent' | null>>(
         new Array(9).fill(null)
     );
-    
+
     const getDate = () => {
         const now = new Date();
         const date = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
@@ -54,14 +53,12 @@ const LevelTenPage: React.FC = () => {
     };
 
     const getTargetWord = async (date: string) => {
-        const corsProxy = 'https://corsproxy.io/?' // You can also use 'https://api.allorigins.win/raw?url=' as an alternative
-        const nytUrl = `https://www.nytimes.com/svc/wordle/v2/${date}.json`;
-        const response = await fetch(`${corsProxy}${encodeURIComponent(nytUrl)}`);
-        
+        const url = `https://api.justacouplequestions.com/level10/${date}`;
+        const response = await fetch(url);
         if (!response.ok) {
             throw new Error('Failed to fetch word');
         }
-        
+
         const data = await response.json();
         return data.solution.toUpperCase();
     };
@@ -79,7 +76,7 @@ const LevelTenPage: React.FC = () => {
                         return;
                     }
                 }
-                
+
                 const word = await getTargetWord(currentDate);
                 setTargetWord(word);
                 localStorage.setItem('level10Cache', JSON.stringify({ date: currentDate, word }));
@@ -90,7 +87,7 @@ const LevelTenPage: React.FC = () => {
                 setIsLoading(false);
             }
         };
-        
+
         fetchWord();
     }, []);
 
@@ -103,10 +100,10 @@ const LevelTenPage: React.FC = () => {
     const handleSelectTip = (index: number) => {
         setSelectedTipIndex(index);
         setSelectedTip(keypadButtons[index].percentage);
-        
+
         const newIndices = [...lastFiveIndices, index];
         setLastFiveIndices(newIndices);
-        
+
         if (newIndices.length === 5) {
             checkWord(newIndices);
             // Clear the history after checking
@@ -116,49 +113,52 @@ const LevelTenPage: React.FC = () => {
         }
     };
 
-    const checkWord = useCallback((indices: number[]) => {
-        const targetArray = targetWord.split('');
-        const newStatuses: Array<'correct' | 'present' | 'absent'> = new Array(9).fill(null);
-        
-        // Check if the word is correct
-        let isCorrect = true;
-        for (let i = 0; i < 5; i++) {
-            const buttonIndex = indices[i];
-            const letters = keypadButtons[buttonIndex].letters;
-            if (!letters.includes(targetArray[i])) {
-                isCorrect = false;
+    const checkWord = useCallback(
+        (indices: number[]) => {
+            const targetArray = targetWord.split('');
+            const newStatuses: Array<'correct' | 'present' | 'absent'> = new Array(9).fill(null);
+
+            // Check if the word is correct
+            let isCorrect = true;
+            for (let i = 0; i < 5; i++) {
+                const buttonIndex = indices[i];
+                const letters = keypadButtons[buttonIndex].letters;
+                if (!letters.includes(targetArray[i])) {
+                    isCorrect = false;
+                }
             }
-        }
 
-        // If word is correct, set first value to 0
-        if (isCorrect) {
-            setKeypadButtons((prev) => {
-                const newButtons = [...prev];
-                newButtons[indices[4]].percentage = 0;
-                return newButtons;
-            });
-        }
-        
-        // Check each letter in the attempt
-        for (let i = 0; i < 5; i++) {
-            const buttonIndex = indices[i];
-            const letters = keypadButtons[buttonIndex].letters;
-            if (letters.includes(targetArray[i])) {
-                newStatuses[buttonIndex] = 'correct';
-            } else if (Array.from(targetArray).some(letter => letters.includes(letter))) {
-                newStatuses[buttonIndex] = 'present';
-            } else {
-                newStatuses[buttonIndex] = 'absent';
+            // If word is correct, set first value to 0
+            if (isCorrect) {
+                setKeypadButtons((prev) => {
+                    const newButtons = [...prev];
+                    newButtons[indices[4]].percentage = 0;
+                    return newButtons;
+                });
             }
-        }
 
-        setButtonStatuses(newStatuses);
+            // Check each letter in the attempt
+            for (let i = 0; i < 5; i++) {
+                const buttonIndex = indices[i];
+                const letters = keypadButtons[buttonIndex].letters;
+                if (letters.includes(targetArray[i])) {
+                    newStatuses[buttonIndex] = 'correct';
+                } else if (Array.from(targetArray).some((letter) => letters.includes(letter))) {
+                    newStatuses[buttonIndex] = 'present';
+                } else {
+                    newStatuses[buttonIndex] = 'absent';
+                }
+            }
 
-        // Clear statuses after 3 seconds
-        setTimeout(() => {
-            setButtonStatuses(new Array(9).fill(null));
-        }, 3000);
-    }, [targetWord, keypadButtons]);
+            setButtonStatuses(newStatuses);
+
+            // Clear statuses after 3 seconds
+            setTimeout(() => {
+                setButtonStatuses(new Array(9).fill(null));
+            }, 3000);
+        },
+        [targetWord, keypadButtons]
+    );
 
     const handleSubmit = () => {
         localStorage.setItem('level10Tip', selectedTip?.toString() || '0');
@@ -172,7 +172,7 @@ const LevelTenPage: React.FC = () => {
 
     if (error) {
         return (
-            <motion.div 
+            <motion.div
                 className="level-container error-container"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -182,7 +182,7 @@ const LevelTenPage: React.FC = () => {
                 <div className="error-content">
                     <p>We're having trouble loading today's puzzle.</p>
                     <p>Please check your internet connection and try again.</p>
-                    <motion.button 
+                    <motion.button
                         className="submit-button"
                         onClick={() => window.location.reload()}
                         initial={{ opacity: 0 }}
@@ -203,11 +203,18 @@ const LevelTenPage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
         >
-            <h1 className="level-title">
-                Level {level.id}: {level.title}
+            <h1 className="level-title level-10-title">
+                <a
+                    href="https://www.nytimes.com/games/wordle/index.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="level-title"
+                >
+                    {level.title}
+                </a>
             </h1>
-            <p className="level-ten-subtitle">
-                Your <span className="highlight-letter">p</span>ersonal <span className="highlight-letter">l</span>ocal b<span className="highlight-letter">a</span>nk toda<span className="highlight-letter">y</span> was <span className="highlight-letter">t</span>ruly <span className="highlight-letter">o</span>utstanding! The <span className="highlight-letter">d</span>edicated <span className="highlight-letter">a</span>ssistant helped <span className="highlight-letter">y</span>ou <span className="highlight-letter">s</span>wiftly. Their <span className="highlight-letter">w</span>arm and <span className="highlight-letter">o</span>rganized <span className="highlight-letter">r</span>esponse <span className="highlight-letter">d</span>eserves <span className="highlight-letter">l</span>ovely <span className="highlight-letter">e</span>xtra thanks!
+            <p className="level-subtitle">
+                Good seeing you again! Now the tablet is just going to ask you a couple questions...
             </p>
 
             <div className="tip-container">
@@ -227,11 +234,11 @@ const LevelTenPage: React.FC = () => {
                                     key={index}
                                     initial={{ rotateX: 0 }}
                                     animate={{
-                                        rotateX: lastFiveIndices.length === 5 ? [0, 180, 360] : 0
+                                        rotateX: lastFiveIndices.length === 5 ? [0, 180, 360] : 0,
                                     }}
                                     transition={{
                                         duration: 0.5,
-                                        delay: lastFiveIndices.length === 5 ? index * 0.2 : 0
+                                        delay: lastFiveIndices.length === 5 ? index * 0.2 : 0,
                                     }}
                                 >
                                     <TipButtonWithSubtext
@@ -244,10 +251,10 @@ const LevelTenPage: React.FC = () => {
                                             buttonStatuses[index] === 'correct'
                                                 ? 'correct'
                                                 : buttonStatuses[index] === 'present'
-                                                ? 'present'
-                                                : buttonStatuses[index] === 'absent'
-                                                ? 'absent'
-                                                : ''
+                                                  ? 'present'
+                                                  : buttonStatuses[index] === 'absent'
+                                                    ? 'absent'
+                                                    : ''
                                         }
                                     />
                                 </motion.div>
@@ -267,11 +274,7 @@ const LevelTenPage: React.FC = () => {
                 )}
             </div>
 
-            <LevelOverModal 
-                isOpen={showLevelOverModal} 
-                tipPercentage={selectedTip ?? 0} 
-                onClose={handleModalClose}
-            />
+            <LevelOverModal isOpen={showLevelOverModal} tipPercentage={selectedTip ?? 0} onClose={handleModalClose} />
 
             <CustomTextModal
                 text={"Please confirm that you don't care about human decency."}

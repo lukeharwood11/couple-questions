@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-    MdOutlineAdsClick, 
-    MdSportsEsports, 
-    MdLockOpen, 
+import {
+    MdOutlineAdsClick,
+    MdSportsEsports,
+    MdLockOpen,
     MdLightbulb,
     MdKeyboardArrowRight,
     MdKeyboardArrowLeft,
-    MdClose
+    MdClose,
 } from 'react-icons/md';
 import './WelcomePopup.css';
 
@@ -21,15 +21,15 @@ const WelcomePopup: React.FC<WelcomePopupProps> = ({ isOpen, onClose }) => {
     const sections = ['Goal', 'How to Play', 'Level Unlocking', 'Tips'];
 
     const nextSection = () => {
-        setCurrentSection(prev => Math.min(prev + 1, sections.length - 1));
+        setCurrentSection((prev) => Math.min(prev + 1, sections.length - 1));
     };
 
     const prevSection = () => {
-        setCurrentSection(prev => Math.max(prev - 1, 0));
+        setCurrentSection((prev) => Math.max(prev - 1, 0));
     };
 
     const renderSection = () => {
-        switch(currentSection) {
+        switch (currentSection) {
             case 0:
                 return (
                     <section className="welcome-section">
@@ -37,10 +37,15 @@ const WelcomePopup: React.FC<WelcomePopupProps> = ({ isOpen, onClose }) => {
                             <MdOutlineAdsClick className="section-icon" />
                             <h3>Goal</h3>
                         </div>
-                        <p>Your goal is to complete each level by finding a way to leave a 0% tip. 
-                            <br /><br />
-                            There is <u><strong>always</strong></u> a way 
-                            to escape without tipping.
+                        <p>
+                            Your goal is to complete each level by finding a way to leave a 0% tip.
+                            <br />
+                            <br />
+                            There is{' '}
+                            <u>
+                                <strong>always</strong>
+                            </u>{' '}
+                            a way to escape without tipping.
                         </p>
                     </section>
                 );
@@ -101,7 +106,9 @@ const WelcomePopup: React.FC<WelcomePopupProps> = ({ isOpen, onClose }) => {
                         <div className="instruction-list">
                             <div className="instruction-item">
                                 <MdKeyboardArrowRight />
-                                <p>Pay attention to anything on the screen - normal elements might hide escape routes</p>
+                                <p>
+                                    Pay attention to anything on the screen - normal elements might hide escape routes
+                                </p>
                             </div>
                             <div className="instruction-item">
                                 <MdKeyboardArrowRight />
@@ -119,6 +126,11 @@ const WelcomePopup: React.FC<WelcomePopupProps> = ({ isOpen, onClose }) => {
         }
     };
 
+    const handleClose = () => {
+        onClose();
+        setCurrentSection(0);
+    };
+
     return (
         <AnimatePresence>
             {isOpen && (
@@ -134,10 +146,10 @@ const WelcomePopup: React.FC<WelcomePopupProps> = ({ isOpen, onClose }) => {
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.5, opacity: 0 }}
                     >
-                        <button className="popup-close-x" onClick={onClose}>
+                        <button className="popup-close-x" onClick={handleClose}>
                             <MdClose />
                         </button>
-                        
+
                         {renderSection()}
 
                         <div className="navigation-buttons">
@@ -151,7 +163,7 @@ const WelcomePopup: React.FC<WelcomePopupProps> = ({ isOpen, onClose }) => {
                                     Next <MdKeyboardArrowRight />
                                 </button>
                             ) : (
-                                <button className="welcome-button" onClick={onClose}>
+                                <button className="welcome-button" onClick={handleClose}>
                                     Let's Begin!
                                 </button>
                             )}
