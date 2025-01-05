@@ -1,0 +1,117 @@
+.level-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 200px);
+    gap: 1.5rem;
+    padding: 1.5rem;
+    max-width: 1200px;
+    margin-bottom: 75px;
+    justify-content: center;
+}
+
+.level-card {
+    width: 200px;
+    height: 200px;
+    background: var(--background-color);
+    border: 3px solid #666;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    align-items: center;
+    justify-items: center;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.level-card.locked {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.level-card.completed {
+    background: var(--background-color);
+}
+
+.level-card.next-level {
+    border-width: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.level-card h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+    grid-row: 1;
+}
+
+.level-card p {
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.9;
+    grid-row: 3;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.lock-icon, .play-icon {
+    font-size: 1.75rem;
+    margin: 0;
+    grid-row: 2;
+    align-self: center;
+}
+
+.tip-result {
+    font-size: 1.5rem;
+    font-weight: bold;
+    grid-row: 2;
+    align-self: center;
+}
+
+.feedback-card {
+    background: var(--background-color);
+    border-color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .level-grid {
+        grid-template-columns: repeat(auto-fill, 120px);
+        gap: 0.75rem;
+        padding: 0.75rem;
+    }
+
+    .level-card {
+        width: 120px;
+        height: 140px;
+        padding: 0.75rem;
+        border-width: 2px;
+    }
+
+    .level-card.next-level {
+        border-width: 3px;
+    }
+
+    .level-card h2 {
+        font-size: 0.9rem;
+    }
+
+    .level-card p {
+        font-size: 0.8rem;
+        -webkit-line-clamp: initial;
+        display: block;
+    }
+
+    .lock-icon, .play-icon {
+        font-size: 1.25rem;
+    }
+
+    .tip-result {
+        font-size: 0.85rem;
+    }
+}

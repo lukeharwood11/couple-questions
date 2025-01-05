@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import TipButton from '../../components/TipButton/TipButton';
@@ -47,6 +47,10 @@ const LevelFourPage: React.FC = () => {
         setShowModal(false);
         navigate('/');
     };
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
         <div className="level-four-page">

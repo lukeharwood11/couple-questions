@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MdHelp, MdInfo, MdRefresh } from 'react-icons/md';
 import './HomePage.css';
 import levelData from '../meta/levels.json';
 import WelcomePopup from '../../components/WelcomePopup/WelcomePopup';
-import LevelCarousel from '../../components/LevelCarousel/LevelCarousel';
+import LevelView from '../../components/LevelView/LevelView';
 import ThankYouPopup from '../../components/ThankYouPopup/ThankYouPopup';
 import CustomTextModal from '../../components/CustomTextModal/CustomTextModal';
 
 const HomePage: React.FC = () => {
     const navigate = useNavigate();
+    const nextLevelRef = useRef<HTMLDivElement>(null);
     const [showWelcomePopup, setShowWelcomePopup] = useState(false);
     const [showThanksPopup, setShowThanksPopup] = useState(false);
     const [showStartOverModal, setShowStartOverModal] = useState(false);
@@ -22,6 +23,13 @@ const HomePage: React.FC = () => {
         if (!hasCompletedLevelOne) {
             setShowWelcomePopup(true);
         }
+
+        // Scroll next level into view with a slight delay to ensure animations are complete
+        const timer = setTimeout(() => {
+            nextLevelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 600);
+
+        return () => clearTimeout(timer);
     }, []);
 
     const closePopup = () => {
@@ -44,11 +52,9 @@ const HomePage: React.FC = () => {
     const isLevelAccessible = (level: number) => {
         if (level === 1) return true;
 
-        // Find the last completed level and count non-zero tips up to that point
         let lastCompletedLevel = 0;
         let nonZeroTips = 0;
 
-        // First find the last completed level
         for (let i = level - 1; i >= 1; i--) {
             const tipValue = localStorage.getItem(`level${i}Tip`);
             if (tipValue === '0') {
@@ -57,7 +63,6 @@ const HomePage: React.FC = () => {
             }
         }
 
-        // Then count non-zero tips only up to the last completed level
         for (let i = 1; i <= lastCompletedLevel; i++) {
             const tipValue = localStorage.getItem(`level${i}Tip`);
             if (tipValue !== null && parseFloat(tipValue) > 0) {
@@ -65,24 +70,21 @@ const HomePage: React.FC = () => {
             }
         }
 
-        // If level 1 isn't completed, only allow access to levels 1 and 2
         if (lastCompletedLevel === 0) {
             return level <= 2;
         }
 
-        // Allow access if within (2 - nonZeroTips) levels of the last completed level
         const lookAhead = Math.max(0, 2 - nonZeroTips);
         return level <= lastCompletedLevel + lookAhead;
     };
 
     const getNextAvailableLevel = () => {
-        // Start from the highest level and work backwards
         for (let i = levels.length; i >= 1; i--) {
             if (localStorage.getItem(`level${i}Tip`) === '0') {
                 return i + 1;
             }
         }
-        return 1; // Return 1 if no levels are completed
+        return 1;
     };
 
     const containerVariants = {
@@ -92,14 +94,6 @@ const HomePage: React.FC = () => {
             transition: {
                 staggerChildren: 0.2,
             },
-        },
-    };
-
-    const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1,
         },
     };
 
@@ -157,16 +151,16 @@ const HomePage: React.FC = () => {
                     </motion.div>
                     <motion.hr className="home-divider" variants={dividerVariants} initial="hidden" animate="visible" />
                 </motion.div>
-                <motion.div variants={itemVariants}>
-                    <LevelCarousel
-                        onThanksClick={() => setShowThanksPopup(true)}
-                        levels={levels}
-                        onSelectLevel={(levelId) => navigate(`/level/${levelId}`)}
-                        getLevelStatus={getLevelStatus}
-                        isLevelAccessible={isLevelAccessible}
-                        currentLevel={getNextAvailableLevel() || 1}
-                    />
-                </motion.div>
+
+                <LevelView
+                    onThanksClick={() => setShowThanksPopup(true)}
+                    levels={levels}
+                    onSelectLevel={(levelId) => navigate(`/level/${levelId}`)}
+                    getLevelStatus={getLevelStatus}
+                    isLevelAccessible={isLevelAccessible}
+                    currentLevel={getNextAvailableLevel() || 1}
+                    nextLevelRef={nextLevelRef}
+                />
             </motion.div>
 
             <motion.button

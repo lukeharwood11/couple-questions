@@ -198,7 +198,7 @@
 
 .tip-result {
   margin-top: 8px;
-  font-size: 1.1em;
+  font-size: 1.5em;
   font-weight: bold;
 }
 
@@ -223,6 +223,22 @@
   
   .levels-grid {
     grid-template-columns: 1fr;
+  }
+
+  .tip-result {
+    font-size: 0.9em !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .level-card.completed::after {
+    width: 20px;
+    height: 20px;
+    font-size: 0.8em;
+    top: 8px;
+    right: 8px;
   }
 }
 
