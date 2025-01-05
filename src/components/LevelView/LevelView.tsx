@@ -40,19 +40,19 @@ const LevelView: React.FC<LevelViewProps> = ({
 
     const cardVariants = {
         hidden: { opacity: 0, scale: 0.8 },
-        visible: { 
-            opacity: 1, 
+        visible: {
+            opacity: 1,
             scale: 1,
             transition: {
-                duration: 0.3
-            }
+                duration: 0.3,
+            },
         },
         hover: {
             scale: 1.05,
             transition: {
-                duration: 0.2
-            }
-        }
+                duration: 0.2,
+            },
+        },
     };
 
     return (
@@ -74,7 +74,7 @@ const LevelView: React.FC<LevelViewProps> = ({
                         variants={cardVariants}
                         initial="hidden"
                         animate="visible"
-                        whileHover={accessible ? "hover" : undefined}
+                        whileHover={accessible ? 'hover' : undefined}
                         onClick={() => {
                             if (accessible) {
                                 onSelectLevel(level.id);
