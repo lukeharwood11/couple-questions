@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import TipButton from '../../components/TipButton/TipButton';
@@ -18,6 +18,10 @@ const LevelThreePage: React.FC = () => {
     const level = levelData.levels[2];
     const baseAmount = level.baseAmount;
     const navigate = useNavigate();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const handleTipSelect = (percentage: number) => {
         if (percentage === -1) {

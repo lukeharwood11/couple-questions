@@ -60,7 +60,7 @@ const LevelOverModal: React.FC<LevelOverModalProps> = ({ isOpen, tipPercentage, 
                         style={{ borderColor: getBorderColor(tipPercentage) }}
                     >
                         <h2>{getTitle(tipPercentage)}</h2>
-                        <p className="tip-result" style={{ color: getBorderColor(tipPercentage) }}>
+                        <p className="tip-result-modal" style={{ color: getBorderColor(tipPercentage) }}>
                             You tipped: {getPercentageText(tipPercentage)}
                         </p>
                         <p className="completion-message">{getMessage(tipPercentage)}</p>
