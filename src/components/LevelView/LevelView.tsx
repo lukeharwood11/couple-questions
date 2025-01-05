@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { MdLock, MdPlayArrow, MdOutlineHandshake } from 'react-icons/md';
 import './LevelView.css';
@@ -28,6 +28,21 @@ const LevelView: React.FC<LevelViewProps> = ({
     onThanksClick,
     nextLevelRef,
 }) => {
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+            const shouldBeMobile = width < 768;
+            setIsMobile(shouldBeMobile);
+        };
+
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [isMobile]);
+
     const getNextUnfinishedLevel = () => {
         for (let i = 1; i <= levels.length; i++) {
             const { isComplete } = getLevelStatus(i);
@@ -85,7 +100,7 @@ const LevelView: React.FC<LevelViewProps> = ({
                         {!accessible ? (
                             <>
                                 <MdLock className="lock-icon" />
-                                <p>{level.title}</p>
+                                {!isMobile && <p>{level.title}</p>}
                             </>
                         ) : (
                             <>
@@ -96,7 +111,7 @@ const LevelView: React.FC<LevelViewProps> = ({
                                 ) : (
                                     <MdPlayArrow className="play-icon" />
                                 )}
-                                <p>{level.title}</p>
+                                {!isMobile && <p>{level.title}</p>}
                             </>
                         )}
                     </motion.div>
@@ -113,7 +128,7 @@ const LevelView: React.FC<LevelViewProps> = ({
             >
                 <h2>Level X: Feedback</h2>
                 <MdOutlineHandshake size={30} />
-                <p>Thank you for playing!</p>
+                {!isMobile && <p>Thank you for playing!</p>}
             </motion.div>
         </div>
     );

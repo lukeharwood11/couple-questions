@@ -80,16 +80,17 @@
 }
 
 @media (max-width: 768px) {
+    
     .level-grid {
-        grid-template-columns: repeat(auto-fill, 120px);
-        gap: 0.75rem;
-        padding: 0.75rem;
+        grid-template-columns: repeat(auto-fill, 100px);
+        gap: 0.5rem;
+        padding: 0.5rem;
     }
 
     .level-card {
-        width: 120px;
-        height: 140px;
-        padding: 0.75rem;
+        width: 100px;
+        height: 100px;
+        padding: 0.5rem;
         border-width: 2px;
     }
 
