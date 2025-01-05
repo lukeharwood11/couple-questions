@@ -183,7 +183,7 @@
 .level-card.completed::after {
   content: "✓";
   position: absolute;
-  top: 10px;
+  top: 20px;
   right: 10px;
   background: var(--secondary-gradient);
   color: white;
@@ -213,18 +213,20 @@
 }
 
 @media (max-width: 768px) {
+
+  .home-divider {
+    margin: 1rem auto 1rem auto;
+  }
+
   .home-title {
     font-size: 2.5rem;
+    margin-bottom: 1rem;
   }
   
   .home-subtitle {
     font-size: 1.2rem;
   }
   
-  .levels-grid {
-    grid-template-columns: 1fr;
-  }
-
   .tip-result {
     font-size: 0.9em !important;
     white-space: nowrap;
@@ -234,11 +236,7 @@
   }
 
   .level-card.completed::after {
-    width: 20px;
-    height: 20px;
-    font-size: 0.8em;
-    top: 8px;
-    right: 8px;
+    display: none;
   }
 }
 
