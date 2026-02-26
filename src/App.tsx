@@ -15,6 +15,7 @@ import LevelSevenPage from './pages/07_LevelSevenPage/LevelSeven';
 import LevelEightPage from './pages/08_LevelEightPage/LevelEightPage';
 import LevelNinePage from './pages/09_LevelNinePage/LevelNinePage';
 import LevelTenPage from './pages/10_LevelTenPage/LevelTenPage';
+import LevelElevenPage from './pages/11_LevelElevenPage/LevelElevenPage';
 function App() {
     return (
         <BrowserRouter>
@@ -33,6 +34,7 @@ function App() {
                             <Route path="8" element={<LevelEightPage />} />
                             <Route path="9" element={<LevelNinePage />} />
                             <Route path="10" element={<LevelTenPage />} />
+                            <Route path="11" element={<LevelElevenPage />} />
                             {/* Add new levels here */}
                         </Route>
 
