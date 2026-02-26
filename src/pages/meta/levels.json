@@ -59,6 +59,12 @@
       "title": "The Bank",
       "subtitle": "You're approved for a loan! After you sign there, it's just going to ask you a couple questions...",
       "baseAmount": 10000.00
+    },
+    {
+      "id": 11,
+      "title": "The Diner",
+      "subtitle": "Great meal! Now it's just going to ask you a couple questions...",
+      "baseAmount": 34.50
     }
   ]
 }
